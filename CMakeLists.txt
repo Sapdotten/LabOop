@@ -23,7 +23,7 @@ target_include_directories(functions PUBLIC "include")
 
 # Подключаем googletest
 include(FetchContent)
-FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/6b63c98ac43efc992122f1da12aaf0a0e0658206.zip)
+FetchContent_Declare(googletest URL C:/Users/regis/oop-repository/gtest.zip)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 

@@ -1,3 +1,3 @@
 #pragma once
 
-int sum_stub(int lhs, int rhs);
+int pow_stub(int num, int pow);

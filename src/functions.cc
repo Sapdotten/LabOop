@@ -1,5 +1,9 @@
 #include <functions/functions.h>
 
-int sum_stub(int lhs, int rhs) {
-    return lhs + rhs;
+int pow_stub(int num, int pow) {
+    int answ = num;
+    for (int i = 1; i < pow; i++) {
+        answ *= num;
+    }
+    return answ;
 }
