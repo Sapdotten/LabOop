@@ -3,6 +3,12 @@
 #include <ctime>
 
 
+std::string ConverIntToStr(int num) {
+	std::stringstream ss;
+	ss << num;
+	return ss.str();
+}
+
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
 	/*switch (this->type) {
@@ -38,6 +44,7 @@ int Character::Attack() {
 			return this->damage * 3;
 		}
 	}
+
 	return this->damage;
 }
 
@@ -51,6 +58,9 @@ int Character::TakeDamage(int damage) {
 			this->HP = this->HP - dmg;
 			return dmg;
 		}
+	}
+	if (this->type == assasin && this->skillStatus) {
+		return 0;
 	}
 	dmg = damage - this->armor;
 	this->HP = this->HP - dmg;
@@ -72,10 +82,10 @@ void Character::UseSkill() {
 	}
 }
 
-void Character::ResetParams(){
+void Character::ResetParams() {
 	switch (this->type) {
 	case knight:
-		this->armor +=40;
+		this->armor += 40;
 		this->damage += 30;
 		break;
 	case berserk:
@@ -88,3 +98,22 @@ void Character::ResetParams(){
 	this->skillStatus = false;
 }
 
+std::string Character::Action(int act, Character opponent) {
+	int dmg = 0;
+	switch (act) {
+	case 1:
+		dmg += opponent.TakeDamage(this->Attack());
+		if (this->skillStatus) {
+			if (this->type == assasin) {
+				dmg += opponent.TakeDamage(this->Attack());
+			}
+			this->ResetParams();
+		}
+		return "You have done damage: " + ConverIntToStr(dmg);
+	case 2:
+		this->UseSkill();
+		return "Skill is activated";
+	}
+
+
+}
