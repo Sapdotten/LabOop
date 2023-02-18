@@ -1,4 +1,4 @@
-#include <sstream>
+
 
 enum CharacterType {
 	knight,
@@ -6,7 +6,6 @@ enum CharacterType {
 	berserk
 };
 
-std::string ConverIntToStr(int num);
 
 class Character {
 	CharacterType type;
@@ -23,7 +22,7 @@ public:
 	int Attack();
 	int TakeDamage(int Damage);
 	void UseSkill();
-	std::string Action(int act, Character opponent); //1 - атакаб 2 - использовать умение
+	int Action(int act, Character opponent); //1 - атакаб 2 - использовать умение
 private:
 	void ResetParams();
 

@@ -3,12 +3,6 @@
 #include <ctime>
 
 
-std::string ConverIntToStr(int num) {
-	std::stringstream ss;
-	ss << num;
-	return ss.str();
-}
-
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
 	/*switch (this->type) {
@@ -98,21 +92,28 @@ void Character::ResetParams() {
 	this->skillStatus = false;
 }
 
-std::string Character::Action(int act, Character opponent) {
+int Character::Action(int act, Character opponent) {
 	int dmg = 0;
 	switch (act) {
 	case 1:
 		dmg += opponent.TakeDamage(this->Attack());
+		if (this->type == assasin) {
+			srand(time(0));
+			int inChance = 1 + rand() % 100;
+			if (inChance <= this->chance * 100) {
+				dmg += this->Action(1, opponent);
+			}
+		}
 		if (this->skillStatus) {
 			if (this->type == assasin) {
 				dmg += opponent.TakeDamage(this->Attack());
 			}
 			this->ResetParams();
 		}
-		return "You have done damage: " + ConverIntToStr(dmg);
+		return dmg;
 	case 2:
 		this->UseSkill();
-		return "Skill is activated";
+		return -1;
 	}
 
 
