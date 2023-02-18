@@ -5,7 +5,7 @@
 
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
-	switch (this->type) {
+	/*switch (this->type) {
 	case knight:
 		this->armor = 70;
 		break;
@@ -15,7 +15,7 @@ Character::Character(CharacterType Ctype) {
 	case berserk:
 		this->damage = 150;
 		break;
-	}
+	}*/
 }
 
 int Character::GetHP() {
@@ -57,7 +57,34 @@ int Character::TakeDamage(int damage) {
 	return dmg;
 }
 
-void Character::LowHP(int dmg) {
-	this->HP = this->HP - dmg;
+void Character::UseSkill() {
+	this->skillStatus = true;
+	switch (this->type) {
+	case knight:
+		this->armor += 40;
+		this->damage -= 30;
+		break;
+	case berserk:
+		this->armor -= 40;
+		this->chance += 0.3;
+		this->damage += 50;
+		break;
+	}
+}
+
+void Character::ResetParams(){
+	switch (this->type) {
+	case knight:
+		this->armor +=40;
+		this->damage += 30;
+		break;
+	case berserk:
+		this->armor += 40;
+		this->chance -= 0.3;
+		this->damage -= 50;
+
+		break;
+	}
+	this->skillStatus = false;
 }
 
