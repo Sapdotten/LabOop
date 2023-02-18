@@ -3,6 +3,7 @@
 #include <ctime>
 
 
+
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
 	/*switch (this->type) {
@@ -18,6 +19,9 @@ Character::Character(CharacterType Ctype) {
 	}*/
 }
 
+void Character::SetChance(double chnc) {
+	chance = chnc;
+}
 int Character::GetHP() {
 	return this->HP;
 }
@@ -101,7 +105,7 @@ int Character::Action(int act, Character opponent) {
 			srand(time(0));
 			int inChance = 1 + rand() % 100;
 			if (inChance <= this->chance * 100) {
-				dmg += this->Action(1, opponent);
+				dmg += opponent.TakeDamage(this->Attack());
 			}
 		}
 		if (this->skillStatus) {

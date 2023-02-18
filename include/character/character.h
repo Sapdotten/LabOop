@@ -1,3 +1,4 @@
+#pragma once
 
 
 enum CharacterType {
@@ -15,6 +16,7 @@ class Character {
 	double chance = 0.5;
 	bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 public:
+	void SetChance(double chance);
 	Character(CharacterType Ctype);
 	int GetHP();
 	int GetArmor();
