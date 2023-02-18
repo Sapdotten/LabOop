@@ -1,4 +1,4 @@
-#include <functions/functions.h>
+#include <character/character.h>
 
 int pow_stub(int num, int pow) {
     int answ = num;
