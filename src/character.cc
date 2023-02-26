@@ -20,7 +20,7 @@ Character::Character(CharacterType Ctype) {
 }
 
 void Character::SetChance(double chnc) {
-	chance = chnc;
+	this->chance = chnc;
 }
 int Character::GetHP() {
 	return this->HP;
@@ -48,14 +48,10 @@ int Character::Attack() {
 
 int Character::TakeDamage(int damage) {
 	int dmg = 0;
-	if (this->type == knight) {
-		srand(time(0));
-		int inChance = 1 + rand() % 100;
-		if (inChance <= this->chance * 100) {
+	if (this->type == knight && this->CritChance()) {
 			dmg = (damage - this->armor) / 2;
 			this->HP = this->HP - dmg;
 			return dmg;
-		}
 	}
 	if (this->type == assasin && this->skillStatus) {
 		return 0;
@@ -69,13 +65,13 @@ void Character::UseSkill() {
 	this->skillStatus = true;
 	switch (this->type) {
 	case knight:
-		this->armor += 40;
-		this->damage -= 30;
+		this->armor += addArmor;
+		this->damage -= addDamage;
 		break;
 	case berserk:
-		this->armor -= 40;
-		this->chance += 0.3;
-		this->damage += 50;
+		this->armor -= addArmor;
+		this->chance += addChance;
+		this->damage += addDamage;
 		break;
 	}
 }
@@ -83,14 +79,13 @@ void Character::UseSkill() {
 void Character::ResetParams() {
 	switch (this->type) {
 	case knight:
-		this->armor += 40;
-		this->damage += 30;
+		this->armor -=addArmor;
+		this->damage += addDamage;
 		break;
 	case berserk:
-		this->armor += 40;
-		this->chance -= 0.3;
-		this->damage -= 50;
-
+		this->armor += addArmor;
+		this->chance -= addChance;
+		this->damage -= addDamage;
 		break;
 	}
 	this->skillStatus = false;
@@ -101,13 +96,9 @@ int Character::Action(int act, Character opponent) {
 	switch (act) {
 	case 1:
 		dmg += opponent.TakeDamage(this->Attack());
-		if (this->type == assasin) {
-			srand(time(0));
-			int inChance = 1 + rand() % 100;
-			if (inChance <= this->chance * 100) {
+		if (this->type == assasin && this->CritChance()) {
 				dmg += opponent.TakeDamage(this->Attack());
 			}
-		}
 		if (this->skillStatus) {
 			if (this->type == assasin) {
 				dmg += opponent.TakeDamage(this->Attack());
@@ -121,4 +112,13 @@ int Character::Action(int act, Character opponent) {
 	}
 
 
+}
+
+bool Character::CritChance() {
+	srand(time(0));
+	int inChance = 1 + rand() % 100;
+	if (inChance <= this->chance * 100) {
+		return true;
+	}
+	return false;
 }
