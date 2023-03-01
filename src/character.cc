@@ -3,10 +3,10 @@
 #include <ctime>
 
 
-
+Character::Character() :type(CharacterType::assasin), HP(1200) {};
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
-	/*switch (this->type) {
+	switch (this->type) {
 	case knight:
 		this->armor = 70;
 		break;
@@ -16,20 +16,19 @@ Character::Character(CharacterType Ctype) {
 	case berserk:
 		this->damage = 150;
 		break;
-	}*/
+	}
 }
 
 void Character::SetChance(double chnc) {
 	this->chance = chnc;
 }
+
 int Character::GetHP() {
 	return this->HP;
 }
-
 int Character::GetArmor() {
 	return this->armor;
 }
-
 int Character::getDamage() {
 	return this->damage;
 }

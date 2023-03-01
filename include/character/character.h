@@ -17,19 +17,20 @@ class Character {
 	int addDamage = 30;
 	double chance = 0.5;
 	double addChance = 0.3;
-
 	
+	Character() :type(CharacterType::assasin), HP(1200) {};
+	Character(CharacterType Ctype);
 	bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 public:
 	void SetChance(double chance);
-	Character(CharacterType Ctype);
+
 	int GetHP();
 	int GetArmor();
 	int getDamage();
 	int Attack();
 	int TakeDamage(int Damage);
 	void UseSkill();
-	int Action(int act, Character opponent); //1 - атакаб 2 - использовать умение
+	int Action(int act, Character opponent); //1 - атака 2 - использовать умение
 private:
 	void ResetParams();
 	bool CritChance();
