@@ -34,12 +34,8 @@ int Character::getDamage() {
 }
 
 int Character::Attack() {//высчитывает урон, который должен нанести перс
-	if (this->type == berserk) {
-		srand(time(0));
-		int inChance = 1 + rand() % 100;
-		if (inChance <= this->chance * 100) {
+	if (this->type == berserk && this->CritChance()) {
 			return this->damage * 3;
-		}
 	}
 
 	return this->damage;
