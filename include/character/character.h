@@ -39,11 +39,3 @@ private:
 };
 
 
-class Container {
-	static const int _SIZE = 10;
-	int _size;
-	Character Array[_SIZE];
-	Container() : _size(0) {};
-	Container(int size): _size(size){}
-
-};
