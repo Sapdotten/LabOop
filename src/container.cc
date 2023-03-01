@@ -20,10 +20,14 @@ int Container::getSize() {
 void Container::add(Character& elem, int index) {
 	if (index > _size || _size<0 || _size==_SIZE)
 		throw std::out_of_range("Invalid index");
-	std::memmove(_array + index + 1, _array + index, sizeof(Character) * (_size - index));
+	++_size;
 	_array[index] = elem;
 }
 
 void Container::deleteElem(int index) {
-
+	if (index >= _size || _size < 0)
+		throw std::out_of_range("Invalid index");
+		std::memmove(_array + index-1, _array + index, sizeof(Character) * (_size - index));
+		--_size;
+		_array[_size] = Character();
 }
