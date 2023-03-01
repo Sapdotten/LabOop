@@ -1,10 +1,13 @@
 #include <character/character.h>
+#include <stdexcept>
 #include <cstdlib>
 #include <ctime>
 
 
 Character::Character() :type(CharacterType::nobody), HP(0), damage(0), armor(0) {};//конструктор по умолчанию определяет тип перса асасин
 Character::Character(CharacterType Ctype) {
+	if (Ctype == nobody)
+		throw std::invalid_argument("You can't use this type of character");
 	this->type = Ctype;
 	switch (this->type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
@@ -20,6 +23,8 @@ Character::Character(CharacterType Ctype) {
 }
 
 void Character::SetChance(double chnc) {//устанавливает шанс для определнного персонажа
+	if (type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
 	this->chance = chnc;
 }
 
@@ -34,7 +39,9 @@ int Character::getDamage() {
 }
 
 int Character::Attack() {//высчитывает урон, который должен нанести перс
-	if (this->type == berserk && this->CritChance()) {
+	if (type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
+	if (this->type == berserk && this->_CritChance()) {
 			return this->damage * 3;
 	}
 
@@ -42,8 +49,10 @@ int Character::Attack() {//высчитывает урон, который должен нанести перс
 }
 
 int Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
+	if (type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
 	int dmg = 0;
-	if (this->type == knight && this->CritChance()) {
+	if (this->type == knight && this->_CritChance()) {
 			dmg = (damage - this->armor) / 2;
 			this->HP = this->HP - dmg;
 			return dmg;
@@ -57,6 +66,8 @@ int Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
 }
 
 void Character::UseSkill() {//меняет параметры под скилл
+	if (type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
 	this->skillStatus = true;
 	switch (this->type) {
 	case knight:
@@ -71,7 +82,7 @@ void Character::UseSkill() {//меняет параметры под скилл
 	}
 }
 
-void Character::ResetParams() {//сбрасывает параметры после использования скилла
+void Character::_ResetParams() {//сбрасывает параметры после использования скилла
 	switch (this->type) {
 	case knight:
 		this->armor -=addArmor;
@@ -87,18 +98,20 @@ void Character::ResetParams() {//сбрасывает параметры после использования скилла
 }
 
 int Character::Action(int act, Character opponent) {//позволяет сделать ход
+	if (type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
 	int dmg = 0;
 	switch (act) {
 	case 1:
 		dmg += opponent.TakeDamage(this->Attack());
-		if (this->type == assasin && this->CritChance()) {
+		if (this->type == assasin && this->_CritChance()) {
 				dmg += opponent.TakeDamage(this->Attack());
 			}
 		if (this->skillStatus) {
 			if (this->type == assasin) {
 				dmg += opponent.TakeDamage(this->Attack());
 			}
-			this->ResetParams();
+			this->_ResetParams();
 		}
 		return dmg;
 	case 2:
@@ -109,7 +122,7 @@ int Character::Action(int act, Character opponent) {//позволяет сделать ход
 
 }
 
-bool Character::CritChance() {//высчитывает факт выпадения крита
+bool Character::_CritChance() {//высчитывает факт выпадения крита
 	srand(time(0));
 	int inChance = 1 + rand() % 100;
 	if (inChance <= this->chance * 100) {

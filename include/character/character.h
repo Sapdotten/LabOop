@@ -34,8 +34,8 @@ public:
 	void UseSkill();
 	int Action(int act, Character opponent); //1 - атака 2 - использовать умение
 private:
-	void ResetParams();
-	bool CritChance();
+	void _ResetParams();
+	bool _CritChance();
 
 };
 
