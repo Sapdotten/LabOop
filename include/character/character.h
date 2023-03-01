@@ -18,10 +18,11 @@ class Character {
 	double chance = 0.5;
 	double addChance = 0.3;
 	
-	Character() :type(CharacterType::assasin), HP(1200) {};
-	Character(CharacterType Ctype);
+	
 	bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 public:
+	Character() :type(CharacterType::assasin), HP(1200) {};
+	Character(CharacterType Ctype);
 	void SetChance(double chance);
 
 	int GetHP();
@@ -39,5 +40,10 @@ private:
 
 
 class Container {
+	static const int _SIZE = 10;
+	int _size;
+	Character Array[_SIZE];
+	Container() : _size(0) {};
+	Container(int size): _size(size){}
 
 };
