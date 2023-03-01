@@ -3,10 +3,10 @@
 #include <ctime>
 
 
-Character::Character() :type(CharacterType::assasin), HP(1200) {};
+Character::Character() :type(CharacterType::assasin), HP(1200) {};//конструктор по умолчанию определяет тип перса асасин
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
-	switch (this->type) {
+	switch (this->type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
 		this->armor = 70;
 		break;
@@ -19,7 +19,7 @@ Character::Character(CharacterType Ctype) {
 	}
 }
 
-void Character::SetChance(double chnc) {
+void Character::SetChance(double chnc) {//устанавливает шанс для определнного персонажа
 	this->chance = chnc;
 }
 
@@ -33,7 +33,7 @@ int Character::getDamage() {
 	return this->damage;
 }
 
-int Character::Attack() {
+int Character::Attack() {//высчитывает урон, который должен нанести перс
 	if (this->type == berserk) {
 		srand(time(0));
 		int inChance = 1 + rand() % 100;
@@ -45,7 +45,7 @@ int Character::Attack() {
 	return this->damage;
 }
 
-int Character::TakeDamage(int damage) {
+int Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
 	int dmg = 0;
 	if (this->type == knight && this->CritChance()) {
 			dmg = (damage - this->armor) / 2;
@@ -60,7 +60,7 @@ int Character::TakeDamage(int damage) {
 	return dmg;
 }
 
-void Character::UseSkill() {
+void Character::UseSkill() {//меняет параметры под скилл
 	this->skillStatus = true;
 	switch (this->type) {
 	case knight:
@@ -75,7 +75,7 @@ void Character::UseSkill() {
 	}
 }
 
-void Character::ResetParams() {
+void Character::ResetParams() {//сбрасывает параметры после использования скилла
 	switch (this->type) {
 	case knight:
 		this->armor -=addArmor;
@@ -90,7 +90,7 @@ void Character::ResetParams() {
 	this->skillStatus = false;
 }
 
-int Character::Action(int act, Character opponent) {
+int Character::Action(int act, Character opponent) {//позволяет сделать ход
 	int dmg = 0;
 	switch (act) {
 	case 1:
@@ -113,7 +113,7 @@ int Character::Action(int act, Character opponent) {
 
 }
 
-bool Character::CritChance() {
+bool Character::CritChance() {//высчитывает факт выпадения крита
 	srand(time(0));
 	int inChance = 1 + rand() % 100;
 	if (inChance <= this->chance * 100) {
