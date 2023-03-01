@@ -2,6 +2,7 @@
 
 
 enum CharacterType {
+	nobody,
 	knight,
 	assasin,
 	berserk

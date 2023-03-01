@@ -3,7 +3,7 @@
 #include <ctime>
 
 
-Character::Character() :type(CharacterType::assasin), HP(1200) {};//конструктор по умолчанию определяет тип перса асасин
+Character::Character() :type(CharacterType::nobody), HP(0), damage(0), armor(0) {};//конструктор по умолчанию определяет тип перса асасин
 Character::Character(CharacterType Ctype) {
 	this->type = Ctype;
 	switch (this->type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
