@@ -11,7 +11,7 @@ class Container {
 	Container(int size);
 
 	Character& operator[](int index);
-	int getSize();
+	int GetSize();
 	void AddElem(Character& elem, int index);
 	void DeleteElem(int index);
 

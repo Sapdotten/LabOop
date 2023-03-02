@@ -15,7 +15,7 @@ Character& Container::operator[](int index) {
 	return _array[index];
 }
 
-int Container::getSize() {
+int Container::GetSize() {
 	return _size;
 }
 
