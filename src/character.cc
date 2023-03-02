@@ -4,19 +4,25 @@
 #include <ctime>
 
 
-Character::Character() :_type(CharacterType::nobody), _health(0), _damage(0), _armor(0) {};//конструктор по умолчанию определяет тип перса асасин
-Character::Character(CharacterType Ctype) {
+
+Character::Character(CharacterType Ctype): _chance(0.5) {
 	if (Ctype == nobody)
 		throw std::invalid_argument("You can't use this type of character");
 	this->_type = Ctype;
 	switch (this->_type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
+		this-> _health = 1000;
 		this->_armor = 70;
+		this-> _damage = 100;
 		break;
 	case assasin:
 		this->_health = 1200;
+		this->_armor = 50;
+		this->_damage = 100;
 		break;
 	case berserk:
+		this->_health = 1000;
+		this->_armor = 50;
 		this->_damage = 150;
 		break;
 	}
@@ -80,7 +86,7 @@ void Character::UseSkill() {//меняет параметры под скилл
 		break;
 	case berserk:
 		this->_armor -= _ADD_ARMOR;
-		this->_chance += addChance;
+		this->_chance += _ADD_CHANCE;
 		this->_damage += _ADD_DAMAGE;
 		break;
 	}
@@ -94,18 +100,20 @@ void Character::_ResetParams() {//сбрасывает параметры после использования скилл
 		break;
 	case berserk:
 		this->_armor += _ADD_ARMOR;
-		this->_chance -= addChance;
+		this->_chance -= _ADD_CHANCE;
 		this->_damage -= _ADD_DAMAGE;
 		break;
 	}
 	this->skillStatus = false;
 }
 
-int Character::Action(int act, Character opponent) {//позволяет сделать ход
-	if (_type == nobody || opponent._type==nobody)
+int Character::Action(int act, Character& opponent) {//позволяет сделать ход
+	if (this->_type == nobody || opponent._type==nobody)
 		throw std::logic_error("You can't use \"nobody\" character");
 	if (act != 1 && act != 2)
 		throw std::invalid_argument("");
+	if (this == &opponent)
+		throw std::logic_error("You can't attack yourself");
 	int dmg = 0;
 	switch (act) {
 	case 1:
@@ -114,9 +122,6 @@ int Character::Action(int act, Character opponent) {//позволяет сделать ход
 				dmg += opponent.TakeDamage(this->Attack());
 			}
 		if (this->skillStatus) {
-			if (this->_type == assasin) {
-				dmg += opponent.TakeDamage(this->Attack());
-			}
 			this->_ResetParams();
 		}
 		return dmg;

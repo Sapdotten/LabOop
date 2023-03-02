@@ -11,19 +11,19 @@ enum CharacterType {
 
 class Character {
 	CharacterType _type;
-	int _health = 1000;
-	int _armor = 50;
-	int _damage = 100;
-	double _chance = 0.5;
+	int _health;
+	int _armor;
+	int _damage;
+	double _chance;
 	static const int _ADD_ARMOR = 40,
 	_ADD_DAMAGE = 30;
-
-	static constexpr double addChance = 0.3;
+	static constexpr double _ADD_CHANCE = 0.3;
 	
 	
 	bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 public:
-	Character() :_type(CharacterType::assasin), _health(1200) {};
+	
+	Character() :_type(CharacterType::nobody), _health(0), _damage(0), _armor(0), _chance(0) {};
 	Character(CharacterType Ctype);
 	void SetChance(double chance);
 
@@ -33,7 +33,7 @@ public:
 	int Attack();
 	int TakeDamage(int Damage);
 	void UseSkill();
-	int Action(int act, Character opponent); //1 - атака 2 - использовать умение
+	int Action(int act, Character& opponent); //1 - атака 2 - использовать умение
 private:
 	void _ResetParams();
 	bool _CritChance();

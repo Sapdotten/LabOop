@@ -3,10 +3,10 @@
 #include <stdexcept>
 
 
-Container::Container() : _size(0) {};
 Container::Container(int size){
 	if (_size > _SIZE || _size < 0)
 		throw std::out_of_range("Invalid size");
+	_size = size;
 }
 
 Character Container::operator[](int index) const{
