@@ -25,13 +25,10 @@ TEST(CharacterTests, characterTest1) {//berserk vs assain
     Berserk.SetChance(1);
     Assasin.SetChance(0);
     int r1 = Berserk.Action(1, Assasin);
-    int h1 = Assasin._health;
     int r2 = Berserk.Action(2, Assasin);
-    int h2 = Assasin._health;
     int r3 = Assasin.Action(1, Berserk);
     EXPECT_EQ(r1, 400);
-    EXPECT_EQ(h1, 800);
-    EXPECT_EQ(h1, h2);
+    EXPECT_EQ(Assasin.GetHP(), 800);
     EXPECT_EQ(r2, -1);
     EXPECT_EQ(r3, 90);
 }
