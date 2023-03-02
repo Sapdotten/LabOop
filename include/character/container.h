@@ -12,7 +12,7 @@ class Container {
 
 	Character& operator[](int index);
 	int getSize();
-	void add(Character& elem, int index);
-	void deleteElem(int index);
+	void AddElem(Character& elem, int index);
+	void DeleteElem(int index);
 
 };

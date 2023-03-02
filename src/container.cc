@@ -10,6 +10,8 @@ Container::Container(int size){
 }
 
 Character& Container::operator[](int index) {
+	if (index >= _size)
+		throw std::out_of_range("");
 	return _array[index];
 }
 
@@ -17,15 +19,15 @@ int Container::getSize() {
 	return _size;
 }
 
-void Container::add(Character& elem, int index) {
+void Container::AddElem(Character& elem, int index) {
 	if (index > _size || _size<0 || _size==_SIZE)
 		throw std::out_of_range("Invalid index");
 	++_size;
 	_array[index] = elem;
 }
 
-void Container::deleteElem(int index) {
-	if (index >= _size || _size < 0)
+void Container::DeleteElem(int index) {
+	if (index >= _size || index < 0)
 		throw std::out_of_range("Invalid index");
 		std::memmove(_array + index-1, _array + index, sizeof(Character) * (_size - index));
 		--_size;
