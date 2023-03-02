@@ -9,13 +9,19 @@ Container::Container(int size){
 		throw std::out_of_range("Invalid size");
 }
 
+Character Container::operator[](int index) const{
+	if (index >= _size)
+		throw std::out_of_range("");
+	return _array[index];
+}
+
 Character& Container::operator[](int index) {
 	if (index >= _size)
 		throw std::out_of_range("");
 	return _array[index];
 }
 
-int Container::GetSize() {
+int Container::GetSize() const{
 	return _size;
 }
 
@@ -32,4 +38,16 @@ void Container::DeleteElem(int index) {
 		std::memmove(_array + index-1, _array + index, sizeof(Character) * (_size - index));
 		--_size;
 		_array[_size] = Character();
+}
+
+Character& Container::GetMaxDamage() {
+	if (_size == 0)
+		throw std::invalid_argument("");
+	int maxElem = 0;
+	for (int i = 0; i < _size; ++i) {
+		if ((*this)[i].GetDamage() > (*this)[maxElem].GetDamage()) {
+			maxElem = i;
+		}
+	}
+	return (*this)[maxElem];
 }

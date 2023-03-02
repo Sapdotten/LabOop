@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 #include <character/character.h>
+#include <character/container.h>
+#include <iostream>
+using namespace std;
 
 TEST(CharacterTests, characterTest0) {
     Character Pers1(CharacterType::berserk);
@@ -30,3 +33,5 @@ TEST(CharacterTests, characterTest1) {
     EXPECT_EQ(r2, 50);
     EXPECT_EQ(r3, 50);
 }
+
+
