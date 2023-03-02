@@ -10,25 +10,26 @@ enum CharacterType {
 
 
 class Character {
-	CharacterType type;
-	int HP = 1000;
-	int armor = 50;
-	int addArmor = 40;
-	int damage = 100;
-	int addDamage = 30;
-	double chance = 0.5;
-	double addChance = 0.3;
+	CharacterType _type;
+	int _health = 1000;
+	int _armor = 50;
+	int _damage = 100;
+	double _chance = 0.5;
+	static const int _ADD_ARMOR = 40,
+	_ADD_DAMAGE = 30;
+
+	static constexpr double addChance = 0.3;
 	
 	
 	bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 public:
-	Character() :type(CharacterType::assasin), HP(1200) {};
+	Character() :_type(CharacterType::assasin), _health(1200) {};
 	Character(CharacterType Ctype);
 	void SetChance(double chance);
 
 	int GetHP();
 	int GetArmor();
-	int getDamage();
+	int GetDamage();
 	int Attack();
 	int TakeDamage(int Damage);
 	void UseSkill();
