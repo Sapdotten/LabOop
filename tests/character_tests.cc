@@ -20,7 +20,7 @@ using namespace std;
 //}
 
 
-TEST(CharacterTests, characterTest2) {//berserk vs everybody
+TEST(CharacterTests, characterTest1) {//berserk without skill vs everybody
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::assasin);
     Character Assasin(CharacterType::assasin);
@@ -33,12 +33,35 @@ TEST(CharacterTests, characterTest2) {//berserk vs everybody
     Berserk.SetChance(1);
     int BK = Berserk.Action(1, Knight);
     int Ba = Berserk.Action(1, Assasin);
-    EXPECT_EQ(bk, -1);
-    EXPECT_EQ(ba, -1);
-    EXPECT_EQ(bK, -1);
-    EXPECT_EQ(BK, -1);
-    EXPECT_EQ(Ba, -1);
+    EXPECT_EQ(bk, 100);
+    EXPECT_EQ(ba, 100);
+    EXPECT_EQ(bK, 100);
+    EXPECT_EQ(BK, 400);
+    EXPECT_EQ(Ba, 400);
 }
 
-
+TEST(CharacterTests, characterTest2) {//berserk with skill vs everybody
+    Character Berserk(CharacterType::berserk);
+    Character Knight(CharacterType::assasin);
+    Character Assasin(CharacterType::assasin);
+    Berserk.SetChance(0);
+    Knight.SetChance(0);
+    int skill = Berserk.Action(2, Knight);
+    int bk = Berserk.Action(1, Knight);
+    skill = Berserk.Action(2, Assasin);
+    int ba = Berserk.Action(1, Assasin);
+    Knight.SetChance(1);
+    skill = Berserk.Action(2, Knight);
+    int bK = Berserk.Action(1, Knight);
+    Berserk.SetChance(1);
+    skill = Berserk.Action(2, Knight);
+    int BK = Berserk.Action(1, Knight);
+    skill = Berserk.Action(2, Assasin);
+    int Ba = Berserk.Action(1, Assasin);
+    EXPECT_EQ(bk, 100);
+    EXPECT_EQ(ba, 100);
+    EXPECT_EQ(bK, 100);
+    EXPECT_EQ(BK, 400);
+    EXPECT_EQ(Ba, 400);
+}
 

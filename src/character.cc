@@ -1,4 +1,3 @@
-#include "character.h"
 #include <character/character.h>
 #include <stdexcept>
 #include <cstdlib>
@@ -6,24 +5,18 @@
 
 
 
-Character::Character(CharacterType Ctype): _chance(0.5) {
+Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(70), _damage(100) {
 	if (Ctype == nobody)
 		throw std::invalid_argument("You can't use this type of character");
 	this->_type = Ctype;
 	switch (this->_type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
-		this-> _health = 1000;
 		this->_armor = 70;
-		this-> _damage = 100;
 		break;
 	case assasin:
 		this->_health = 1200;
-		this->_armor = 50;
-		this->_damage = 100;
 		break;
 	case berserk:
-		this->_health = 1000;
-		this->_armor = 50;
 		this->_damage = 150;
 		break;
 	}
@@ -47,7 +40,7 @@ int Character::GetDamage() {
 	return this->_damage;
 }
 
-int Character::Attack() {//высчитывает урон, который должен нанести перс
+int Character::Damage() {//высчитывает урон, который должен нанести перс
 	if (_type == nobody)
 		throw std::logic_error("You can't use \"nobody\" character");
 	if (this->_type == berserk && this->_CritChance()) {
@@ -76,7 +69,7 @@ int Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
 	return dmg;
 }
 
-void Character::UseSkill() {//меняет параметры под скилл
+int Character::UseSkill() {//меняет параметры под скилл
 	if (_type == nobody)
 		throw std::logic_error("You can't use \"nobody\" character");
 	this->skillStatus = true;
@@ -93,31 +86,22 @@ void Character::UseSkill() {//меняет параметры под скилл
 	}
 }
 
-int Character::Action(int act, Character& opponent) {//позволяет сделать ход
+int Character::Attack(Character& opponent) {
 	if (this->_type == nobody || opponent._type == nobody)
 		throw std::logic_error("You can't use \"nobody\" character");
-	if (act != 1 && act != 2)
-		throw std::invalid_argument("");
 	if (this == &opponent)
 		throw std::logic_error("You can't attack yourself");
 	int dmg = 0;
-	switch (act) {
-	case 1:
-		dmg += opponent.TakeDamage(this->Attack());
-		if (this->_type == assasin && this->_CritChance()) {
-			dmg += opponent.TakeDamage(this->Attack());
+	dmg += opponent.TakeDamage(this->Damage());
+	if (this->_type == assasin && this->_CritChance()) {
+		dmg += opponent.TakeDamage(this->Damage());
 		}
-		if (this->skillStatus) {
-			this->_ResetParams();
-		}
-		return dmg;
-	case 2:
-		this->UseSkill();
-		return -1;
+	if (this->skillStatus) {
+		this->_ResetParams();
 	}
-
-
+	return dmg;
 }
+
 
 void Character::_ResetParams() {//сбрасывает параметры после использования скилла
 	switch (this->_type) {

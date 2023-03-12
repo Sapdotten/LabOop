@@ -30,11 +30,12 @@ public:
 	int GetHP();
 	int GetArmor();
 	int GetDamage();
-	int Attack();
+	int Damage();
 	int TakeDamage(int Damage);
-	void UseSkill();
-	int Action(int act, Character& opponent); //1 - атака 2 - использовать умение
+	int Attack(Character& opponent);
+	int UseSkill();
 private:
+	void _SetSkillParams();
 	void _ResetParams();
 	bool _CritChance();
 
