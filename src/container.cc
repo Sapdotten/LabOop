@@ -40,7 +40,7 @@ void Container::DeleteElem(int index) {
 		_array[_size] = Character();
 }
 
-Character& Container::GetMaxDamage() const {
+Character& Container::GetMaxDamage() {
 	if (_size == 0)
 		throw std::invalid_argument("");
 	int maxElem = 0;

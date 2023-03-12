@@ -19,29 +19,26 @@ using namespace std;
 //    EXPECT_EQ(r3, -1);
 //}
 
-TEST(CharacterTests, characterTest1) {//berserk vs assain
-    Character Berserk(CharacterType::berserk);
-    Character Assasin(CharacterType::assasin);
-    Berserk.SetChance(1);
-    Assasin.SetChance(0);
-    int r1 = Berserk.Action(1, Assasin);
-    int r2 = Berserk.Action(2, Assasin);
-    int r3 = Assasin.Action(1, Berserk);
-    EXPECT_EQ(r1, 400);
-    EXPECT_EQ(Assasin.GetHP(), 800);
-    EXPECT_EQ(r2, -1);
-    EXPECT_EQ(r3, 90);
-}
 
-TEST(CharacterTests, characterTest2) {//berserk vs knight
+TEST(CharacterTests, characterTest2) {//berserk vs everybody
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::assasin);
-    Berserk.SetChance(1);
+    Character Assasin(CharacterType::assasin);
+    Berserk.SetChance(0);
     Knight.SetChance(0);
-    int r1 = Berserk.Action(2, Knight);
-    int r2 = Knight.Action(2, Berserk);
-    EXPECT_EQ(r1, -1);
-    EXPECT_EQ(r2, -1);
+    int bk = Berserk.Action(1, Knight);
+    int ba = Berserk.Action(1, Assasin);
+    Knight.SetChance(1);
+    int bK = Berserk.Action(1, Knight);
+    Berserk.SetChance(1);
+    int BK = Berserk.Action(1, Knight);
+    int Ba = Berserk.Action(1, Assasin);
+    EXPECT_EQ(bk, -1);
+    EXPECT_EQ(ba, -1);
+    EXPECT_EQ(bK, -1);
+    EXPECT_EQ(BK, -1);
+    EXPECT_EQ(Ba, -1);
 }
+
 
 

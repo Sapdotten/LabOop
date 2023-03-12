@@ -1,3 +1,4 @@
+#include "character.h"
 #include <character/character.h>
 #include <stdexcept>
 #include <cstdlib>
@@ -92,6 +93,32 @@ void Character::UseSkill() {//меняет параметры под скилл
 	}
 }
 
+int Character::Action(int act, Character& opponent) {//позволяет сделать ход
+	if (this->_type == nobody || opponent._type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
+	if (act != 1 && act != 2)
+		throw std::invalid_argument("");
+	if (this == &opponent)
+		throw std::logic_error("You can't attack yourself");
+	int dmg = 0;
+	switch (act) {
+	case 1:
+		dmg += opponent.TakeDamage(this->Attack());
+		if (this->_type == assasin && this->_CritChance()) {
+			dmg += opponent.TakeDamage(this->Attack());
+		}
+		if (this->skillStatus) {
+			this->_ResetParams();
+		}
+		return dmg;
+	case 2:
+		this->UseSkill();
+		return -1;
+	}
+
+
+}
+
 void Character::_ResetParams() {//сбрасывает параметры после использования скилла
 	switch (this->_type) {
 	case knight:
@@ -107,31 +134,7 @@ void Character::_ResetParams() {//сбрасывает параметры после использования скилл
 	this->skillStatus = false;
 }
 
-int Character::Action(int act, Character& opponent) {//позволяет сделать ход
-	if (this->_type == nobody || opponent._type==nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
-	if (act != 1 && act != 2)
-		throw std::invalid_argument("");
-	if (this == &opponent)
-		throw std::logic_error("You can't attack yourself");
-	int dmg = 0;
-	switch (act) {
-	case 1:
-		dmg += opponent.TakeDamage(this->Attack());
-		if (this->_type == assasin && this->_CritChance()) {
-				dmg += opponent.TakeDamage(this->Attack());
-			}
-		if (this->skillStatus) {
-			this->_ResetParams();
-		}
-		return dmg;
-	case 2:
-		this->UseSkill();
-		return -1;
-	}
 
-
-}
 
 bool Character::_CritChance() {//высчитывает факт выпадения крита
 	srand(time(0));
