@@ -2,10 +2,10 @@
 
 
 enum CharacterType {
-	nobody,
-	knight,
-	assasin,
-	berserk
+	nobody = 0,
+	knight = 1,
+	assasin = 2,
+	berserk= 3
 };
 
 
@@ -15,8 +15,9 @@ class Character {
 	int _armor;
 	int _damage;
 	double _chance;
-	static const int _ADD_ARMOR = 40,
-	_ADD_DAMAGE = 30;
+	
+	static const int _ADD_ARMOR = 20,
+	_ADD_DAMAGE = 20;
 	static constexpr double _ADD_CHANCE = 0.3;
 	
 	

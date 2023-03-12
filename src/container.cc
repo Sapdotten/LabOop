@@ -51,3 +51,5 @@ Character& Container::GetMaxDamage() {
 	}
 	return (*this)[maxElem];
 }
+
+

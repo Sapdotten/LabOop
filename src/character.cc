@@ -5,19 +5,19 @@
 
 
 
-Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(70), _damage(100) {
+Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(25), _damage(100) {
 	if (Ctype == nobody)
 		throw std::invalid_argument("You can't use this type of character");
 	this->_type = Ctype;
 	switch (this->_type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
-		this->_armor = 70;
+		this->_armor = 50;
 		break;
 	case assasin:
 		this->_health = 1200;
 		break;
 	case berserk:
-		this->_damage = 150;
+		this->_damage = 120;
 		break;
 	}
 }
@@ -25,8 +25,8 @@ Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(7
 void Character::SetChance(double chnc) {//устанавливает шанс для определнного персонажа
 	if (_type == nobody)
 		throw std::logic_error("You can't use \"nobody\" character");
-	if (chnc < 0)
-		throw std::invalid_argument("Chance can't be negative");
+	/*if (chnc < 0)
+		throw std::invalid_argument("Chance can't be negative");*/
 	this->_chance = chnc;
 }
 
@@ -68,6 +68,7 @@ int Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
 	this->_health = this->_health - dmg;
 	return dmg;
 }
+
 
 int Character::UseSkill() {//меняет параметры под скилл
 	if (_type == nobody)
