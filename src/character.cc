@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
+#include <string>
 
 
 
@@ -128,4 +130,28 @@ bool Character::_CritChance() {//высчитывает факт выпадения крита
 		return true;
 	}
 	return false;
+}
+
+std::string Character::MakeAMove(int choose, Character& opponent) {
+	if (this->_type == nobody || opponent._type == nobody)
+		throw std::logic_error("You can't use \"nobody\" character");
+	if (this == &opponent)
+		throw std::logic_error("You can't attack yourself");
+	int dmg = 0;
+	switch (choose) {
+	case 1:
+		dmg = this->Attack(opponent);
+		return std::to_string(dmg) + " damage done";
+		break;
+	case 2:
+		if (!this->skillStatus) {
+			this->UseSkill();
+			return "skill is active";
+		}
+		else
+			return "skill is already active";
+		
+
+		break;
+	}
 }

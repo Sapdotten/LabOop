@@ -39,6 +39,7 @@ private:
 	void _SetSkillParams();
 	void _ResetParams();
 	bool _CritChance();
+	std::string MakeAMove(int choose, Character& opponent);
 
 };
 
