@@ -10,7 +10,8 @@ class Container {
 public:
 	Container() : _size(0) {};
 	Container(int size);
-	Character operator[](int index) const;
+	Container(std::initializer_list<Character> args);
+	/*Character operator[](int index) const;*/
 	Character& operator[](int index);
 	int GetSize() const;
 	void AddElem(Character& elem, int index);

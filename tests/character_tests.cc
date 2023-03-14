@@ -1043,6 +1043,10 @@ TEST(ContainerTests, ContainerTest2) {
     EXPECT_EQ(Array[3].GetType(), knight);
     EXPECT_EQ(Array.GetSize(), 4);
 }
+TEST(ContainerTests, ContainerTest3) {
+    Container Array = { Character(assasin), Character(berserk)};
+    EXPECT_EQ(Array.GetSize(), 1);
+}
 
 
 

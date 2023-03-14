@@ -9,6 +9,14 @@ Container::Container(int size){
 	_size = size;
 }
 
+Container::Container(std::initializer_list<Character> args) {
+	if (args.size() > _SIZE) {
+		throw std::out_of_range("Too much arguments");
+	}
+	_size = args.size();
+	memcpy(_array, args.begin(), sizeof(Character) * args.size());
+}
+
 //Character Container::operator[](int index) const{
 //	if (index >= _size)
 //		throw std::out_of_range("");
