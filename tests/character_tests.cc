@@ -1045,7 +1045,9 @@ TEST(ContainerTests, ContainerTest2) {
 }
 TEST(ContainerTests, ContainerTest3) {
     Container Array = { Character(assasin), Character(berserk)};
-    EXPECT_EQ(Array.GetSize(), 1);
+    EXPECT_EQ(Array.GetSize(), 2);
+    EXPECT_EQ(Array.GetMaxDamage().GetDamage(), 120);
+    EXPECT_EQ(Array.GetMinDamage().GetDamage(), 100);
 }
 
 
