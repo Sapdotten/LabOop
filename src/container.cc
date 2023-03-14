@@ -4,7 +4,7 @@
 
 
 Container::Container(int size){
-	if (_size > _SIZE || _size < 0)
+	if (size > _SIZE || size < 0)
 		throw std::out_of_range("Invalid size");
 	_size = size;
 }
@@ -50,6 +50,18 @@ Character& Container::GetMaxDamage() {
 		}
 	}
 	return (*this)[maxElem];
+}
+
+Character& Container::GetMinDamage() {
+	if (_size == 0)
+		throw std::invalid_argument("");
+	int minElem = 0;
+	for (int i = 0; i < _size; ++i) {
+		if ((*this)[i].GetDamage() < (*this)[minElem].GetDamage() && !(*this)[i].GetType()==nobody) {
+			minElem = i;
+		}
+	}
+	return (*this)[minElem];
 }
 
 

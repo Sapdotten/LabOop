@@ -155,3 +155,8 @@ std::string Character::MakeAMove(int choose, Character& opponent) {
 		break;
 	}
 }
+
+
+CharacterType Character::GetType() {
+	return this->_type;
+}

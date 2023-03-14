@@ -1014,3 +1014,30 @@ TEST(CharacterTests, characterTest38) {//assasin with skill vs everybody(1) with
     EXPECT_EQ(Aa, 0);
     EXPECT_EQ(Ak, 30);
 }
+
+
+TEST(ContainerTests, ContainerTest1) {
+    Container Array(5);
+    Array[0] = Character(assasin);
+    Array[2] = Character(berserk);
+    Array[1] = Character(knight);
+    int maxDamage = Array.GetMaxDamage().GetDamage();
+    int minDamage = Array.GetMinDamage().GetDamage();
+
+
+    EXPECT_EQ(maxDamage, 120);
+    EXPECT_EQ(minDamage, 100);
+}
+
+TEST(ContainerTests, ContainerTest2) {
+    Container Array(5);
+    Array[0] = Character(assasin);
+    Array[1] = Character(berserk);
+    Array[2] = Character(knight);
+    Array[3] = Character(assasin);
+    Array[4] = Character(knight);
+    Array.DeleteElem(3);
+
+    EXPECT_EQ(Array[3].GetType(), knight);
+    EXPECT_EQ(Array.GetSize(), 4);
+}

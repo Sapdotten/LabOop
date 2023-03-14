@@ -16,4 +16,5 @@ public:
 	void AddElem(Character& elem, int index);
 	void DeleteElem(int index);
 	Character& GetMaxDamage();
+	Character& GetMinDamage();
 };

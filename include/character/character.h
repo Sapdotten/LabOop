@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 
 enum CharacterType {
@@ -28,6 +29,7 @@ public:
 	Character(CharacterType Ctype);
 	void SetChance(double chance);
 
+	CharacterType GetType();
 	int GetHP();
 	int GetArmor();
 	int GetDamage();
