@@ -9,14 +9,14 @@ Container::Container(int size){
 	_size = size;
 }
 
-Character Container::operator[](int index) const{
-	if (index >= _size)
-		throw std::out_of_range("");
-	return _array[index];
-}
+//Character Container::operator[](int index) const{
+//	if (index >= _size)
+//		throw std::out_of_range("");
+//	return _array[index];
+//}
 
 Character& Container::operator[](int index) {
-	if (index >= _size)
+	if (index >= _size || index<0)
 		throw std::out_of_range("");
 	return _array[index];
 }

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-TEST(CharacterTests, characterTest11) {//berserk without skill vs everybody(0) without skill
+TEST(BerserkTests, BerserkTest1) {//berserk without skill vs everybody(0) without skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -42,7 +42,7 @@ TEST(CharacterTests, characterTest11) {//berserk without skill vs everybody(0) w
     EXPECT_EQ(Bb, 335);
 }
 
-TEST(CharacterTests, characterTest12) {//berserk without skill vs everybody(1) without skill
+TEST(BerserkTests, BerserkTest2) {//berserk without skill vs everybody(1) without skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -79,7 +79,7 @@ TEST(CharacterTests, characterTest12) {//berserk without skill vs everybody(1) w
     EXPECT_EQ(Bb, 335);
 }
 
-TEST(CharacterTests, characterTest13) {//berserk without skill vs everybody(0) with skill
+TEST(BerserkTests, BerserkTest3) {//berserk without skill vs everybody(0) with skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -120,7 +120,7 @@ TEST(CharacterTests, characterTest13) {//berserk without skill vs everybody(0) w
     EXPECT_EQ(Bb, 355);
 }
 
-TEST(CharacterTests, characterTest14) {//berserk without skill vs everybody(1) with skill
+TEST(BerserkTests, BerserkTest4) {//berserk without skill vs everybody(1) with skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -161,7 +161,7 @@ TEST(CharacterTests, characterTest14) {//berserk without skill vs everybody(1) w
     EXPECT_EQ(Bb, 355);
 }
 
-TEST(CharacterTests, characterTest15) {//berserk with skill vs everybody(0) without skill
+TEST(BerserkTests, BerserkTest5) {//berserk with skill vs everybody(0) without skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -204,7 +204,7 @@ TEST(CharacterTests, characterTest15) {//berserk with skill vs everybody(0) with
     EXPECT_EQ(Bb, 395);
 }
 
-TEST(CharacterTests, characterTest16) {//berserk with skill vs everybody(1) without skill
+TEST(BerserkTests, BerserkTest6) {//berserk with skill vs everybody(1) without skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -247,7 +247,7 @@ TEST(CharacterTests, characterTest16) {//berserk with skill vs everybody(1) with
     EXPECT_EQ(Bb, 395);
 }
 
-TEST(CharacterTests, characterTest17) {//berserk with skill vs everybody(0) with skill
+TEST(BerserkTests, BerserkTest7) {//berserk with skill vs everybody(0) with skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -294,7 +294,7 @@ TEST(CharacterTests, characterTest17) {//berserk with skill vs everybody(0) with
     EXPECT_EQ(Bb, 415);
 }
 
-TEST(CharacterTests, characterTest18) {//berserk with skill vs everybody(1) with skill
+TEST(BerserkTests, BerserkTest8) {//berserk with skill vs everybody(1) with skill
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
     Character Assasin(CharacterType::assasin);
@@ -344,7 +344,7 @@ TEST(CharacterTests, characterTest18) {//berserk with skill vs everybody(1) with
 
 
 
-TEST(CharacterTests, characterTest21) {//knight without skill vs everybody(0) without skill
+TEST(KnightTests, KnightTest1) {//knight without skill vs everybody(0) without skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -381,7 +381,7 @@ TEST(CharacterTests, characterTest21) {//knight without skill vs everybody(0) wi
     EXPECT_EQ(Kk, 50);
 }
 
-TEST(CharacterTests, characterTest22) {//knight without skill vs everybody(1) without skill
+TEST(KnightTests, KnightTest2) {//knight without skill vs everybody(1) without skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -418,7 +418,7 @@ TEST(CharacterTests, characterTest22) {//knight without skill vs everybody(1) wi
     EXPECT_EQ(Kk, 25);
 }
 
-TEST(CharacterTests, characterTest23) {//knight with skill vs everybody(0) without skill
+TEST(KnightTests, KnightTest3) {//knight with skill vs everybody(0) without skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -461,7 +461,7 @@ TEST(CharacterTests, characterTest23) {//knight with skill vs everybody(0) witho
     EXPECT_EQ(Kk, 30);
 }
 
-TEST(CharacterTests, characterTest24) {//knight with skill vs everybody(1) without skill
+TEST(KnightTests, KnightTest4) {//knight with skill vs everybody(1) without skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -504,7 +504,7 @@ TEST(CharacterTests, characterTest24) {//knight with skill vs everybody(1) witho
     EXPECT_EQ(Kk, 15);
 }
 
-TEST(CharacterTests, characterTest25) {//knight without skill vs everybody(0) with skill
+TEST(KnightTests, KnightTest5) {//knight without skill vs everybody(0) with skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -545,7 +545,7 @@ TEST(CharacterTests, characterTest25) {//knight without skill vs everybody(0) wi
     EXPECT_EQ(Kk, 30);
 }
 
-TEST(CharacterTests, characterTest26) {//knight without skill vs everybody(1) with skill
+TEST(KnightTests, KnightTest6) {//knight without skill vs everybody(1) with skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -586,7 +586,7 @@ TEST(CharacterTests, characterTest26) {//knight without skill vs everybody(1) wi
     EXPECT_EQ(Kk, 15);
 }
 
-TEST(CharacterTests, characterTest27) {//knight with skill vs everybody(0) with skill
+TEST(KnightTests, KnightTest7) {//knight with skill vs everybody(0) with skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -633,7 +633,7 @@ TEST(CharacterTests, characterTest27) {//knight with skill vs everybody(0) with 
     EXPECT_EQ(Kk, 10);
 }
 
-TEST(CharacterTests, characterTest28) {//knight with skill vs everybody(1) with skill
+TEST(KnightTests, KnightTest8) {//knight with skill vs everybody(1) with skill
     Character Knight(CharacterType::knight);
     Character Berserk(CharacterType::berserk);
     Character Assasin(CharacterType::assasin);
@@ -683,7 +683,7 @@ TEST(CharacterTests, characterTest28) {//knight with skill vs everybody(1) with 
 
 
 
-TEST(CharacterTests, characterTest31) {//assasin without skill vs everybody(0) without skill
+TEST(AssasinTests, AssasinTest1) {//assasin without skill vs everybody(0) without skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -720,7 +720,7 @@ TEST(CharacterTests, characterTest31) {//assasin without skill vs everybody(0) w
     EXPECT_EQ(Ak, 100);
 }
 
-TEST(CharacterTests, characterTest32) {//assasin without skill vs everybody(1) without skill
+TEST(AssasinTests, AssasinTest2) {//assasin without skill vs everybody(1) without skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -757,7 +757,7 @@ TEST(CharacterTests, characterTest32) {//assasin without skill vs everybody(1) w
     EXPECT_EQ(Ak, 50);
 }
 
-TEST(CharacterTests, characterTest33) {//assasin with skill vs everybody(0) without skill
+TEST(AssasinTests, AssasinTest3) {//assasin with skill vs everybody(0) without skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -799,7 +799,7 @@ TEST(CharacterTests, characterTest33) {//assasin with skill vs everybody(0) with
     EXPECT_EQ(Ak, 100);
 }
 
-TEST(CharacterTests, characterTest34) {//assasin with skill vs everybody(0) without skill
+TEST(AssasinTests, AssasinTest4) {//assasin with skill vs everybody(0) without skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -841,7 +841,7 @@ TEST(CharacterTests, characterTest34) {//assasin with skill vs everybody(0) with
     EXPECT_EQ(Ak, 50);
 }
 
-TEST(CharacterTests, characterTest35) {//assasin without skill vs everybody(0) with skill
+TEST(AssasinTests, AssasinTest5) {//assasin without skill vs everybody(0) with skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -882,7 +882,7 @@ TEST(CharacterTests, characterTest35) {//assasin without skill vs everybody(0) w
     EXPECT_EQ(Ak, 60);
 }
 
-TEST(CharacterTests, characterTest36) {//assasin without skill vs everybody(1) with skill
+TEST(AssasinTests, AssasinTest6) {//assasin without skill vs everybody(1) with skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -923,7 +923,7 @@ TEST(CharacterTests, characterTest36) {//assasin without skill vs everybody(1) w
     EXPECT_EQ(Ak, 30);
 }
 
-TEST(CharacterTests, characterTest37) {//assasin with skill vs everybody(0) with skill
+TEST(AssasinTests, AssasinTest7) {//assasin with skill vs everybody(0) with skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -969,7 +969,7 @@ TEST(CharacterTests, characterTest37) {//assasin with skill vs everybody(0) with
     EXPECT_EQ(Ak, 60);
 }
 
-TEST(CharacterTests, characterTest38) {//assasin with skill vs everybody(1) with skill
+TEST(AssasinTests, AssasinTest8) {//assasin with skill vs everybody(1) with skill
     Character Assasin(CharacterType::assasin);
     Character Berserk(CharacterType::berserk);
     Character Knight(CharacterType::knight);
@@ -1014,6 +1014,8 @@ TEST(CharacterTests, characterTest38) {//assasin with skill vs everybody(1) with
     EXPECT_EQ(Aa, 0);
     EXPECT_EQ(Ak, 30);
 }
+
+
 
 
 TEST(ContainerTests, ContainerTest1) {
@@ -1040,4 +1042,52 @@ TEST(ContainerTests, ContainerTest2) {
 
     EXPECT_EQ(Array[3].GetType(), knight);
     EXPECT_EQ(Array.GetSize(), 4);
+}
+
+
+
+
+TEST(ContainerExceptionsTest, ContExceptionTest1) {
+    Container Array;
+    EXPECT_THROW(Array.GetMaxDamage(), logic_error);
+}
+TEST(ContainerExceptionsTest, ContExceptionTest2) {
+    EXPECT_THROW(Container Array(11), logic_error);
+    EXPECT_THROW(Container Array(-1), logic_error);
+}
+TEST(ContainerExceptionsTest, ContExceptionTest3) {
+    Container Array(6);
+    EXPECT_THROW(Array.DeleteElem(7), out_of_range);
+    EXPECT_THROW(Array.DeleteElem(-1), out_of_range);
+    EXPECT_THROW(Array[6], out_of_range);
+    EXPECT_THROW(Array[-1], out_of_range);
+}
+
+
+
+TEST(CharacterExceptionsTest, CharExceptionTest1) {
+    Character player1(assasin);
+    Character player0;
+    EXPECT_THROW({
+        try {
+        player1.Attack(player0);
+    }
+    catch (logic_error er) {
+        EXPECT_STREQ("You can't use \"nobody\" character", er.what());
+        throw;
+    }
+        }, logic_error);
+    EXPECT_THROW(player1.Attack(player1), logic_error);
+}
+
+TEST(CharacterExceptionTest, CharException2) {
+    EXPECT_THROW(Character player(nobody), invalid_argument);
+}
+
+TEST(CharacterExceptionTest, CharException3) {
+    Character player;
+    EXPECT_THROW(player.SetChance(0.7), logic_error);
+    EXPECT_THROW(player.Attack(player), logic_error);
+    EXPECT_THROW(player.UseSkill(), logic_error);
+    EXPECT_THROW(player.TakeDamage(12), logic_error);
 }
