@@ -1030,7 +1030,6 @@ TEST(ContainerTests, ContainerTest1) {
     EXPECT_EQ(maxDamage, 120);
     EXPECT_EQ(minDamage, 100);
 }
-
 TEST(ContainerTests, ContainerTest2) {
     Container Array(5);
     Array[0] = Character(assasin);
@@ -1086,11 +1085,11 @@ TEST(CharacterExceptionsTest, CharExceptionTest1) {
     EXPECT_THROW(player1.Attack(player1), logic_error);
 }
 
-TEST(CharacterExceptionTest, CharException2) {
+TEST(CharacterExceptionTest, CharExceptionTest2) {
     EXPECT_THROW(Character player(nobody), invalid_argument);
 }
 
-TEST(CharacterExceptionTest, CharException3) {
+TEST(CharacterExceptionTest, CharExceptionTest3) {
     Character player;
     EXPECT_THROW(player.SetChance(0.7), logic_error);
     EXPECT_THROW(player.Attack(player), logic_error);
