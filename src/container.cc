@@ -3,13 +3,13 @@
 #include <stdexcept>
 
 
-Container::Container(int size){
+CharacterGame::Container::Container(int size){
 	if (size > _SIZE || size < 0)
 		throw std::out_of_range("Invalid size");
 	_size = size;
 }
 
-Container::Container(std::initializer_list<Character> args) {
+CharacterGame::Container::Container(std::initializer_list<Character> args) {
 	if (args.size() > _SIZE) {
 		throw std::out_of_range("Too much arguments");
 	}
@@ -23,24 +23,26 @@ Container::Container(std::initializer_list<Character> args) {
 //	return _array[index];
 //}
 
-Character& Container::operator[](int index) {
+CharacterGame::Character& CharacterGame::Container::operator[](int index) {
 	if (index >= _size || index<0)
 		throw std::out_of_range("");
 	return _array[index];
 }
 
-int Container::GetSize() const{
+int CharacterGame::Container::GetSize() const{
 	return _size;
 }
 
-void Container::AddElem(Character& elem, int index) {
+void CharacterGame::Container::AddElem(Character& elem, int index) {
 	if (index > _size || _size<0 || _size==_SIZE)
 		throw std::out_of_range("Invalid index");
+	
+	memcpy(_array + index + 1, _array + index, sizeof(Character) * (_size - index));
 	++_size;
 	_array[index] = elem;
 }
 
-void Container::DeleteElem(int index) {
+void CharacterGame::Container::DeleteElem(int index) {
 	if (index >= _size || index < 0)
 		throw std::out_of_range("Invalid index");
 		std::memmove(_array + index-1, _array + index, sizeof(Character) * (_size - index));
@@ -48,7 +50,7 @@ void Container::DeleteElem(int index) {
 		_array[_size] = Character();
 }
 
-Character& Container::GetMaxDamage() {
+CharacterGame::Character& CharacterGame::Container::GetMaxDamage() {
 	if (_size == 0)
 		throw std::invalid_argument("");
 	int maxElem = 0;
@@ -60,7 +62,7 @@ Character& Container::GetMaxDamage() {
 	return (*this)[maxElem];
 }
 
-Character& Container::GetMinDamage() {
+CharacterGame::Character& CharacterGame::Container::GetMinDamage() {
 	if (_size == 0)
 		throw std::invalid_argument("");
 	int minElem = 0;

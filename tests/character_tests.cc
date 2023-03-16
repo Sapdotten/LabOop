@@ -3,7 +3,7 @@
 #include <character/container.h>
 #include <iostream>
 using namespace std;
-
+using namespace CharacterGame;
 
 TEST(BerserkTests, BerserkTest1) {//berserk without skill vs everybody(0) without skill
     Character Berserk(CharacterType::berserk);
@@ -1062,10 +1062,13 @@ TEST(ContainerExceptionsTest, ContExceptionTest2) {
 }
 TEST(ContainerExceptionsTest, ContExceptionTest3) {
     Container Array(6);
+    Container fullArray(10);
+    Character player(assasin);
     EXPECT_THROW(Array.DeleteElem(7), out_of_range);
     EXPECT_THROW(Array.DeleteElem(-1), out_of_range);
     EXPECT_THROW(Array[6], out_of_range);
     EXPECT_THROW(Array[-1], out_of_range);
+    EXPECT_THROW(fullArray.AddElem(player, 8), out_of_range);
 }
 
 
