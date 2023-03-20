@@ -4,11 +4,10 @@
 
 namespace CharacterGame {
 	class Container {
-		static const int _SIZE = 10;
 		int _size;
-		Character _array[_SIZE];
+		Character** _array;
 	public:
-		Container() : _size(0) {};
+		Container() : _array(nullptr) {};
 		Container(int size);
 		Container(std::initializer_list<Character> args);
 		/*Character operator[](int index) const;*/

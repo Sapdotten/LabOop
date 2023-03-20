@@ -1057,7 +1057,6 @@ TEST(ContainerExceptionsTest, ContExceptionTest1) {
     EXPECT_THROW(Array.GetMaxDamage(), logic_error);
 }
 TEST(ContainerExceptionsTest, ContExceptionTest2) {
-    EXPECT_THROW(Container Array(11), logic_error);
     EXPECT_THROW(Container Array(-1), logic_error);
 }
 TEST(ContainerExceptionsTest, ContExceptionTest3) {
@@ -1068,7 +1067,6 @@ TEST(ContainerExceptionsTest, ContExceptionTest3) {
     EXPECT_THROW(Array.DeleteElem(-1), out_of_range);
     EXPECT_THROW(Array[6], out_of_range);
     EXPECT_THROW(Array[-1], out_of_range);
-    EXPECT_THROW(fullArray.AddElem(player, 8), out_of_range);
 }
 
 

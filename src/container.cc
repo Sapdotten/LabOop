@@ -4,17 +4,23 @@
 
 
 CharacterGame::Container::Container(int size){
-	if (size > _SIZE || size < 0)
-		throw std::out_of_range("Invalid size");
+	if (size < 0)
+		throw std::invalid_argument("Size of array can't be negative");
 	_size = size;
+	_array = new Character*[size];
+	for (int i = 0; i < size; i++) {
+		_array[i] = new Character;
+		*_array[i] = Character();
+	}
 }
 
 CharacterGame::Container::Container(std::initializer_list<Character> args) {
-	if (args.size() > _SIZE) {
-		throw std::out_of_range("Too much arguments");
-	}
 	_size = args.size();
-	memcpy(_array, args.begin(), sizeof(Character) * args.size());
+	_array = new Character * [_size];
+	for (int i = 0; i < _size; i++) {
+		_array[i] = new Character;
+		*_array[i] = *(args.begin()+i);
+	}
 }
 
 //Character Container::operator[](int index) const{
@@ -26,7 +32,7 @@ CharacterGame::Container::Container(std::initializer_list<Character> args) {
 CharacterGame::Character& CharacterGame::Container::operator[](int index) {
 	if (index >= _size || index<0)
 		throw std::out_of_range("");
-	return _array[index];
+	return *_array[index];
 }
 
 int CharacterGame::Container::GetSize() const{
@@ -34,20 +40,41 @@ int CharacterGame::Container::GetSize() const{
 }
 
 void CharacterGame::Container::AddElem(Character& elem, int index) {
-	if (index > _size || _size<0 || _size==_SIZE)
+	if (index > _size || index<0)
 		throw std::out_of_range("Invalid index");
+
+	Character** ptr = new Character * [_size + 1];
+	for (int i = 0; i <= _size; i++) {
+		ptr[i] = new Character;
+	}
 	
-	memcpy(_array + index + 1, _array + index, sizeof(Character) * (_size - index));
+	memcpy(ptr, _array, sizeof(Character*)*index);
+	*ptr[index] = elem;
+	memcpy(ptr + index + 1, _array + index, sizeof(Character*) * (_size - index));
 	++_size;
-	_array[index] = elem;
+	
+	/*for (int i = 0; i < _size; i++) {
+		delete _array[i];
+	}*/
+	delete[] _array;
+	_array = ptr;
+	ptr = nullptr;
 }
 
 void CharacterGame::Container::DeleteElem(int index) {
 	if (index >= _size || index < 0)
 		throw std::out_of_range("Invalid index");
-		std::memmove(_array + index-1, _array + index, sizeof(Character) * (_size - index));
-		--_size;
-		_array[_size] = Character();
+	Character** ptr = new Character*[_size - 1];
+	for (int i = 0; i < _size - 1; i++) {
+		ptr[i] = new Character;
+	}
+	memcpy(ptr, _array, sizeof(Character*)*index);
+	memcpy(ptr+index, _array+index + 1, sizeof(Character*) * (_size - index - 1));
+	delete _array[index];
+	delete[] _array;
+	_array = ptr;
+	ptr = nullptr;
+	--_size;
 }
 
 CharacterGame::Character& CharacterGame::Container::GetMaxDamage() {
