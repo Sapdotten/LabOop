@@ -3,6 +3,15 @@
 #include <stdexcept>
 
 
+CharacterGame::Container::Container(const Container& arr) {
+	_size = arr._size;
+	_array = new Character * [_size];
+	for (int i = 0; i < _size; i++) {
+		_array[i] = new Character;
+		*_array[i] = arr[i];
+	}
+}
+
 CharacterGame::Container::Container(int size){
 	if (size < 0)
 		throw std::invalid_argument("Size of array can't be negative");
@@ -23,13 +32,13 @@ CharacterGame::Container::Container(std::initializer_list<Character> args) {
 	}
 }
 
-//Character Container::operator[](int index) const{
-//	if (index >= _size)
-//		throw std::out_of_range("");
-//	return _array[index];
-//}
+CharacterGame::Character CharacterGame::Container::operator[](const int index) const{
+	if (index >= _size)
+		throw std::out_of_range("");
+	return *_array[index];
+}
 
-CharacterGame::Character& CharacterGame::Container::operator[](int index) {
+CharacterGame::Character& CharacterGame::Container::operator[](const int index) {
 	if (index >= _size || index<0)
 		throw std::out_of_range("");
 	return *_array[index];
@@ -53,9 +62,6 @@ void CharacterGame::Container::AddElem(Character& elem, int index) {
 	memcpy(ptr + index + 1, _array + index, sizeof(Character*) * (_size - index));
 	++_size;
 	
-	/*for (int i = 0; i < _size; i++) {
-		delete _array[i];
-	}*/
 	delete[] _array;
 	_array = ptr;
 	ptr = nullptr;
@@ -101,4 +107,21 @@ CharacterGame::Character& CharacterGame::Container::GetMinDamage() {
 	return (*this)[minElem];
 }
 
+CharacterGame::Container::~Container() {
+	for (int i = 0; i < _size; i++) {
+		delete _array[i];
+	}
+	delete[] _array;
+}
 
+void CharacterGame::Container::swap(Container& arr) {
+	std::swap(_size, arr._size);
+	std::swap(_array, arr._array);
+}
+
+CharacterGame::Container& CharacterGame::Container::operator=(Container arr) {
+	this->swap(arr);
+	return *this;
+
+
+}
