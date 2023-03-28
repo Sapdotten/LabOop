@@ -83,7 +83,7 @@ void CharacterGame::Container::DeleteElem(int index) {
 	--_size;
 }
 
-CharacterGame::Character& CharacterGame::Container::GetMaxDamage() {
+int CharacterGame::Container::GetMaxDamage() {
 	if (_size == 0)
 		throw std::invalid_argument("");
 	int maxElem = 0;
@@ -92,7 +92,7 @@ CharacterGame::Character& CharacterGame::Container::GetMaxDamage() {
 			maxElem = i;
 		}
 	}
-	return (*this)[maxElem];
+	return maxElem;
 }
 
 CharacterGame::Character& CharacterGame::Container::GetMinDamage() {

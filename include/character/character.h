@@ -1,7 +1,11 @@
 #pragma once
 #include <string>
 
+
 namespace CharacterGame {
+
+
+
 	enum CharacterType {
 		nobody = 0,
 		knight = 1,
@@ -24,24 +28,31 @@ namespace CharacterGame {
 
 		bool skillStatus = false; //отвечает за активность навыка в данный момент, навык работает 1 следующий ход
 	public:
+		friend std::ostream& operator<<(std::ostream& out, const CharacterType& type);
+		friend std::ostream& operator<<(std::ostream& out, const Character& pers);
 
 		Character() :_type(CharacterType::nobody), _health(0), _damage(0), _armor(0), _chance(0) {};
 		Character(CharacterType Ctype);
 		void SetChance(double chance);
 
-		CharacterType GetType();
-		int GetHP();
-		int GetArmor();
-		int GetDamage();
+		CharacterType GetType() const;
+		int GetHP() const;
+		int GetArmor() const;
+		int GetDamage() const;
 		int Damage();
 		int TakeDamage(int Damage);
 		int Attack(Character& opponent);
 		int UseSkill();
+
+		
 	private:
 		void _ResetParams();
 		bool _CritChance();
 		std::string MakeAMove(int choose, Character& opponent);
 
 	};
+
+	
 }
+
 

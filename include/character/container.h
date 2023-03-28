@@ -22,7 +22,7 @@ namespace CharacterGame {
 
 		void AddElem(Character& elem, int index);
 		void DeleteElem(int index);
-		Character& GetMaxDamage();
+		int GetMaxDamage();
 		Character& GetMinDamage();
 
 		void swap(Container& arr);

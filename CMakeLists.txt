@@ -28,5 +28,9 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Объявляем тесты
+add_executable(Console "Console/Console.cc" "include/character/container.h")
 add_executable(character_tests "tests/character_tests.cc" "include/character/container.h")
+target_link_libraries(Console character GTest::gtest_main)
 target_link_libraries(character_tests character GTest::gtest_main)
+
+

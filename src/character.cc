@@ -32,13 +32,13 @@ void CharacterGame::Character::SetChance(double chnc) {//устанавливает шанс для 
 	this->_chance = chnc;
 }
 
-int CharacterGame::Character::GetHP() {
+int CharacterGame::Character::GetHP() const {
 	return this->_health;
 }
-int CharacterGame::Character::GetArmor() {
+int CharacterGame::Character::GetArmor() const {
 	return this->_armor;
 }
-int CharacterGame::Character::GetDamage() {
+int CharacterGame::Character::GetDamage() const {
 	return this->_damage;
 }
 
@@ -157,6 +157,30 @@ std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent)
 }
 
 
-CharacterGame::CharacterType CharacterGame::Character::GetType() {
+CharacterGame::CharacterType CharacterGame::Character::GetType() const {
 	return this->_type;
+}
+
+
+std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::CharacterType& type) {
+	switch (type) {
+	case nobody:
+		out << "nobody";
+		return out;
+	case assasin:
+		out << "assasin";
+		return out;
+	case berserk:
+		out << "berserk";
+		return out;
+	case knight:
+		out << "knight";
+		return out;
+	}
+
+}
+
+std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::Character& pers) {
+	out <<"type: " << pers._type << "  HP: " << pers._health << "  DMG: " << pers._damage << "  Armor: " << pers._armor;
+	return out;
 }
