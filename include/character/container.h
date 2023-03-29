@@ -19,7 +19,6 @@ namespace CharacterGame {
 
 		int GetSize() const;
 
-
 		void AddElem(Character& elem, int index);
 		void DeleteElem(int index);
 		int GetMaxDamage();

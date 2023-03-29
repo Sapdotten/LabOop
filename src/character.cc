@@ -7,7 +7,7 @@
 
 
 
-CharacterGame::Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(25), _damage(100) {
+CharacterGame::Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(25), _damage(100), _skill_is_used("”мение уже активно!") {
 	if (Ctype == nobody)
 		throw std::invalid_argument("You can't use this type of character");
 	this->_type = Ctype;
@@ -61,6 +61,8 @@ int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,получе
 	if (this->_type == knight && this->_CritChance()) {
 			dmg = (damage - this->_armor) / 2;
 			this->_health = this->_health - dmg;
+			if (_health < 0)
+				_health = 0;
 			return dmg;
 	}
 	if (this->_type == assasin && this->skillStatus) {
@@ -68,6 +70,8 @@ int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,получе
 	}
 	dmg = damage - this->_armor;
 	this->_health = this->_health - dmg;
+	if (_health < 0)
+		_health = 0;
 	return dmg;
 }
 
@@ -141,15 +145,15 @@ std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent)
 	switch (choose) {
 	case 1:
 		dmg = this->Attack(opponent);
-		return std::to_string(dmg) + " damage done";
+		return "¬ы нанесли "+ std::to_string(dmg) + "ед. урона!";
 		break;
 	case 2:
 		if (!this->skillStatus) {
 			this->UseSkill();
-			return "skill is active";
+			return "”мение использовано!";
 		}
 		else
-			return "skill is already active";
+			return _skill_is_used;
 		
 
 		break;
@@ -161,6 +165,10 @@ CharacterGame::CharacterType CharacterGame::Character::GetType() const {
 	return this->_type;
 }
 
+
+std::string CharacterGame::Character::GetStringUsedSkill() {
+	return _skill_is_used;
+}
 
 std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::CharacterType& type) {
 	switch (type) {
