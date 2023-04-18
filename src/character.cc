@@ -8,8 +8,6 @@
 
 
 CharacterGame::Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(25), _damage(100), _skill_is_used("Умение уже активно!") {
-	if (Ctype == nobody)
-		throw std::invalid_argument("You can't use this type of character");
 	this->_type = Ctype;
 	switch (this->_type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
 	case knight:
@@ -24,9 +22,9 @@ CharacterGame::Character::Character(CharacterType Ctype): _chance(0.5), _health(
 	}
 }
 
+CharacterGame::Character::Character() {};
+
 void CharacterGame::Character::SetChance(double chnc) {//устанавливает шанс для определнного персонажа
-	if (_type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
 	/*if (chnc < 0)
 		throw std::invalid_argument("Chance can't be negative");*/
 	this->_chance = chnc;
@@ -43,8 +41,6 @@ int CharacterGame::Character::GetDamage() const {
 }
 
 int CharacterGame::Character::Damage() {//высчитывает урон, который должен нанести перс
-	if (_type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
 	if (this->_type == berserk && this->_CritChance()) {
 			return this->_damage * 3;
 	}
@@ -53,8 +49,6 @@ int CharacterGame::Character::Damage() {//высчитывает урон, который должен нанес
 }
 
 int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
-	if (_type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
 	if (damage < 0)
 		throw std::invalid_argument("Damage can't be negative");
 	int dmg = 0;
@@ -76,9 +70,7 @@ int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,получе
 }
 
 
-int CharacterGame::Character::UseSkill() {//меняет параметры под скилл
-	if (_type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
+void CharacterGame::Character::UseSkill() {//меняет параметры под скилл
 	this->skillStatus = true;
 	switch (this->_type) {
 	case knight:
@@ -94,8 +86,6 @@ int CharacterGame::Character::UseSkill() {//меняет параметры под скилл
 }
 
 int CharacterGame::Character::Attack(Character& opponent) {
-	if (this->_type == nobody || opponent._type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
 	if (this == &opponent)
 		throw std::logic_error("You can't attack yourself");
 	int dmg = 0;
@@ -137,8 +127,6 @@ bool CharacterGame::Character::_CritChance() {//высчитывает факт выпадения крита
 }
 
 std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent) {
-	if (this->_type == nobody || opponent._type == nobody)
-		throw std::logic_error("You can't use \"nobody\" character");
 	if (this == &opponent)
 		throw std::logic_error("You can't attack yourself");
 	int dmg = 0;
@@ -172,9 +160,6 @@ std::string CharacterGame::Character::GetStringUsedSkill() {
 
 std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::CharacterType& type) {
 	switch (type) {
-	case nobody:
-		out << "nobody";
-		return out;
 	case assasin:
 		out << "assasin";
 		return out;

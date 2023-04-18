@@ -7,7 +7,6 @@ namespace CharacterGame {
 
 
 	enum CharacterType {
-		nobody = 0,
 		knight = 1,
 		assasin = 2,
 		berserk = 3
@@ -33,7 +32,7 @@ namespace CharacterGame {
 		friend std::ostream& operator<<(std::ostream& out, const Character& pers);
 
 		std::string GetStringUsedSkill();
-		Character() :_type(CharacterType::nobody), _health(0), _damage(0), _armor(0), _chance(0) {};
+		Character();
 		Character(CharacterType Ctype);
 		void SetChance(double chance);
 
@@ -44,7 +43,7 @@ namespace CharacterGame {
 		int Damage();
 		int TakeDamage(int Damage);
 		int Attack(Character& opponent);
-		int UseSkill();
+		void UseSkill();
 		std::string MakeAMove(int choose, Character& opponent);
 		
 	private:

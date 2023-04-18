@@ -137,12 +137,18 @@ void MakeAMove(Container& players, int turn) {
 	string chooses[] = { "Атаковать", "Использовать умение" };
 	bool answ = false;
 	int choose = 0;
+	string skills[] = {
+		"\n Берсерк: \n\tурон увеличивается на 20ед \n\tвероятность утроенного удара увеличивается на 0.3 \n\tброня уменьшается на 20 ед",
+		"\n Рыцарь: \n\tброня увеличивается на 20ед \n\tурон уменьшается на 20 ед",
+		"\n Ассасин: \n\tуворот от атаки"
+
+	};
 	while (!answ) {
 		system("cls");
 		cout << "Ход  игрока: \n";
 		Draw(players, 2, turn);
 		cout << endl << endl;
-		Draw(chooses, 2, choose, "", string("\n\nУмения персонажей: \nрасписать\n"));
+		Draw(chooses, 2, choose, "", string("\n\nУмения персонажей:" + skills[0]+skills[1]+skills[2]));
 		answ = Input(2, choose);
 		if (answ) {
 			string result = players[turn].MakeAMove(choose+1, players[1 - turn]);

@@ -100,7 +100,7 @@ CharacterGame::Character& CharacterGame::Container::GetMinDamage() {
 		throw std::invalid_argument("");
 	int minElem = 0;
 	for (int i = 0; i < _size; ++i) {
-		if ((*this)[i].GetDamage() < (*this)[minElem].GetDamage() && !(*this)[i].GetType()==nobody) {
+		if ((*this)[i].GetDamage() < (*this)[minElem].GetDamage()) {
 			minElem = i;
 		}
 	}

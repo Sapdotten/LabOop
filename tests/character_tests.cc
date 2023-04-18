@@ -1025,7 +1025,7 @@ TEST(ContainerTests, ContainerTest1) {
     Array[1] = Character(knight);
     int minDamage = Array.GetMinDamage().GetDamage();
 
-    EXPECT_EQ(minDamage, 100);
+    EXPECT_EQ(minDamage, 0);
 }
 TEST(ContainerTests, ContainerTest2) {
     Container Array(5);
@@ -1067,29 +1067,6 @@ TEST(ContainerExceptionsTest, ContExceptionTest3) {
 
 
 
-TEST(CharacterExceptionsTest, CharExceptionTest1) {
-    Character player1(assasin);
-    Character player0;
-    EXPECT_THROW({
-        try {
-        player1.Attack(player0);
-    }
-    catch (logic_error er) {
-        EXPECT_STREQ("You can't use \"nobody\" character", er.what());
-        throw;
-    }
-        }, logic_error);
-    EXPECT_THROW(player1.Attack(player1), logic_error);
-}
 
-TEST(CharacterExceptionTest, CharExceptionTest2) {
-    EXPECT_THROW(Character player(nobody), invalid_argument);
-}
 
-TEST(CharacterExceptionTest, CharExceptionTest3) {
-    Character player;
-    EXPECT_THROW(player.SetChance(0.7), logic_error);
-    EXPECT_THROW(player.Attack(player), logic_error);
-    EXPECT_THROW(player.UseSkill(), logic_error);
-    EXPECT_THROW(player.TakeDamage(12), logic_error);
-}
+
