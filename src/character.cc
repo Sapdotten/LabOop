@@ -7,26 +7,8 @@
 
 
 
-CharacterGame::Character::Character(CharacterType Ctype): _chance(0.5), _health(1000), _armor(25), _damage(100), _skill_is_used("Умение уже активно!") {
-	this->_type = Ctype;
-	switch (this->_type) {//в зависимости от типа персонажа распределяет разные значения некоторых параметров
-	case knight:
-		this->_armor = 50;
-		break;
-	case assasin:
-		this->_health = 1200;
-		break;
-	case berserk:
-		this->_damage = 120;
-		break;
-	}
-}
-
-CharacterGame::Character::Character() {};
 
 void CharacterGame::Character::SetChance(double chnc) {//устанавливает шанс для определнного персонажа
-	/*if (chnc < 0)
-		throw std::invalid_argument("Chance can't be negative");*/
 	this->_chance = chnc;
 }
 
@@ -39,30 +21,54 @@ int CharacterGame::Character::GetArmor() const {
 int CharacterGame::Character::GetDamage() const {
 	return this->_damage;
 }
+bool CharacterGame::Character::GetSkillStatus() const {
+	return _skillStatus;
+}
 
-int CharacterGame::Character::Damage() {//высчитывает урон, который должен нанести перс
-	if (this->_type == berserk && this->_CritChance()) {
-			return this->_damage * 3;
-	}
+std::string CharacterGame::Character::GetType() const {
+	return _type;
+}
 
+
+int CharacterGame::Character::Damage() {
+	return _damage;
+}
+int CharacterGame::Berserk::Damage() {//высчитывает урон, который должен нанести перс
+	if (this->_CritChance()) return this->_damage * 3;
 	return this->_damage;
 }
 
-int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
+int CharacterGame::Character::TakeDamage(int damage) {
+	if (damage < 0)
+		throw std::invalid_argument("Damage can't be negative");
+	int dmg = damage - this->_armor;
+	this->_health = this->_health - dmg;
+	if (_health < 0)
+		_health = 0;
+	return dmg;
+}
+int CharacterGame::Assasin::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
+	if (damage < 0)
+		throw std::invalid_argument("Damage can't be negative");
+	if (this->_skillStatus) {
+		return 0;
+	}
+	int dmg = damage - this->_armor;
+	this->_health = this->_health - dmg;
+	if (_health < 0)
+		_health = 0;
+	return dmg;
+}
+int CharacterGame::Knight::TakeDamage(int damage) {//рассчитывает урон,полученный персонажем
 	if (damage < 0)
 		throw std::invalid_argument("Damage can't be negative");
 	int dmg = 0;
-	if (this->_type == knight && this->_CritChance()) {
-			dmg = (damage - this->_armor) / 2;
-			this->_health = this->_health - dmg;
-			if (_health < 0)
-				_health = 0;
-			return dmg;
+	if (this->_CritChance()) {
+		dmg = (damage - this->_armor) / 2;
 	}
-	if (this->_type == assasin && this->skillStatus) {
-		return 0;
+	else {
+		dmg = damage - this->_armor;
 	}
-	dmg = damage - this->_armor;
 	this->_health = this->_health - dmg;
 	if (_health < 0)
 		_health = 0;
@@ -71,18 +77,19 @@ int CharacterGame::Character::TakeDamage(int damage) {//рассчитывает урон,получе
 
 
 void CharacterGame::Character::UseSkill() {//меняет параметры под скилл
-	this->skillStatus = true;
-	switch (this->_type) {
-	case knight:
-		this->_armor += _ADD_ARMOR;
-		this->_damage -= _ADD_DAMAGE;
-		break;
-	case berserk:
-		this->_armor -= _ADD_ARMOR;
-		this->_chance += _ADD_CHANCE;
-		this->_damage += _ADD_DAMAGE;
-		break;
-	}
+	this->_skillStatus = true;
+}
+void CharacterGame::Knight::UseSkill() {//меняет параметры под скилл
+	this->_skillStatus = true;
+	this->_armor += _D_ARMOR;
+	this->_damage -= _D_DAMAGE;
+
+}
+void CharacterGame::Berserk::UseSkill() {//меняет параметры под скилл
+	this->_skillStatus = true;
+	this->_armor -= _D_ARMOR;
+	this->_chance += _D_CHANCE;
+	this->_damage += _D_DAMAGE;
 }
 
 int CharacterGame::Character::Attack(Character& opponent) {
@@ -90,10 +97,20 @@ int CharacterGame::Character::Attack(Character& opponent) {
 		throw std::logic_error("You can't attack yourself");
 	int dmg = 0;
 	dmg += opponent.TakeDamage(this->Damage());
-	if (this->_type == assasin && this->_CritChance()) {
+	if (this->_skillStatus) {
+		this->_ResetParams();
+	}
+	return dmg;
+}
+int CharacterGame::Assasin::Attack(Character& opponent) {
+	if (this == &opponent)
+		throw std::logic_error("You can't attack yourself");
+	int dmg = 0;
+	dmg += opponent.TakeDamage(this->Damage());
+	if (this->_CritChance()) {
 		dmg += opponent.TakeDamage(this->Damage());
-		}
-	if (this->skillStatus) {
+	}
+	if (this->_skillStatus) {
 		this->_ResetParams();
 	}
 	return dmg;
@@ -101,20 +118,19 @@ int CharacterGame::Character::Attack(Character& opponent) {
 
 
 void CharacterGame::Character::_ResetParams() {//сбрасывает параметры после использования скилла
-	switch (this->_type) {
-	case knight:
-		this->_armor -=_ADD_ARMOR;
-		this->_damage += _ADD_DAMAGE;
-		break;
-	case berserk:
-		this->_armor += _ADD_ARMOR;
-		this->_chance -= _ADD_CHANCE;
-		this->_damage -= _ADD_DAMAGE;
-		break;
-	}
-	this->skillStatus = false;
+	this->_skillStatus = false;
 }
-
+void CharacterGame::Knight::_ResetParams() {//сбрасывает параметры после использования скилла
+	this->_armor -= _D_ARMOR;
+	this->_damage += _D_DAMAGE;
+	this->_skillStatus = false;
+}
+void CharacterGame::Berserk::_ResetParams() {//сбрасывает параметры после использования скилла
+	this->_armor += _D_ARMOR;
+	this->_chance -= _D_CHANCE;
+	this->_damage -= _D_DAMAGE;
+	this->_skillStatus = false;
+}
 
 
 bool CharacterGame::Character::_CritChance() {//высчитывает факт выпадения крита
@@ -136,44 +152,46 @@ std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent)
 		return "Вы нанесли "+ std::to_string(dmg) + "ед. урона!";
 		break;
 	case 2:
-		if (!this->skillStatus) {
+		if (!this->_skillStatus) {
 			this->UseSkill();
 			return "Умение использовано!";
 		}
 		else
 			return _skill_is_used;
-		
-
 		break;
 	}
 }
 
 
-CharacterGame::CharacterType CharacterGame::Character::GetType() const {
-	return this->_type;
-}
+
 
 
 std::string CharacterGame::Character::GetStringUsedSkill() {
 	return _skill_is_used;
 }
 
-std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::CharacterType& type) {
-	switch (type) {
-	case assasin:
-		out << "assasin";
-		return out;
-	case berserk:
-		out << "berserk";
-		return out;
-	case knight:
-		out << "knight";
-		return out;
-	}
 
+void CharacterGame::Character::Print(std::ostream& out) const{
+	out <<"type: " << "No type" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+}
+void CharacterGame::Assasin::Print(std::ostream& out) const {
+	out << "type: " << "Assasin" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+}
+void CharacterGame::Berserk::Print(std::ostream& out) const {
+	out << "type: " << "Berserk" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+}
+void CharacterGame::Knight::Print(std::ostream& out) const {
+	out << "type: " << "Knight" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
 }
 
-std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::Character& pers) {
-	out <<"type: " << pers._type << "  HP: " << pers._health << "  DMG: " << pers._damage << "  Armor: " << pers._armor;
+
+std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::Character& pers){
+	pers.Print(out);
 	return out;
 }
+
+std::unique_ptr<CharacterGame::Character> CharacterGame::Character::clone() const {
+	return std::make_unique<CharacterGame::Character>(*this);
+};
+
+//"type: " << this->GetType() << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;

@@ -74,9 +74,11 @@ int InputIndex(int size) {
 	return index;
 }
 
-CharacterType InputType() {
+int InputType() {
 	string types[] = { "berserk", "assasin", "knight" };
-	CharacterType ctypes[] = { berserk, assasin, knight };
+	//"berserk" = 0
+	//"assasin" = 1 
+	//"knight" = 2
 	int choose = 0;
 	int answ = false;
 	while (!answ) {
@@ -85,15 +87,26 @@ CharacterType InputType() {
 		Draw(types, 3, choose);
 		answ = Input(3, choose);
 	}
-	return ctypes[choose];
+	return choose;
 }
 
 void AddCharacter(Container& arr) {
 	int index = 0;
 	index = InputIndex(arr.GetSize() + 1);
 	if (index != -1) {
-		Character pers(InputType());
-		arr.AddElem(pers, index);
+		int choose = InputType();
+		if (choose == 0) {
+			Berserk pers;
+			arr.AddElem(make_shared<Berserk>(pers), index);
+		}
+		else if (choose == 1) {
+			Assasin pers;
+			arr.AddElem(make_shared<Assasin>(pers), index);
+		}
+		else if (choose == 2) {
+			Knight pers;
+			arr.AddElem(make_shared<Knight>(pers), index);
+		}
 	}
 
 }
@@ -118,8 +131,21 @@ void FindMaxDamage(Container& arr) {
 
 void ChangeCharacter(Container& arr) {
 	int index = InputIndex(arr.GetSize());
-	if (index != -1)
-		arr[index] = Character(InputType());
+	if (index != -1) {
+		int choose = InputType();
+		switch (choose) {
+		case 0:
+			arr[index] = Berserk();
+			break;
+		case 1:
+			arr[index] = Assasin();
+			break;
+		case 2:
+			arr[index] = Knight();
+			break;
+
+		}
+	}
 }
 
 int ChooseCharacter(Container& arr) {
@@ -151,19 +177,23 @@ void MakeAMove(Container& players, int turn) {
 		Draw(chooses, 2, choose, "", string("\n\nУмения персонажей:" + skills[0]+skills[1]+skills[2]));
 		answ = Input(2, choose);
 		if (answ) {
-			string result = players[turn].MakeAMove(choose+1, players[1 - turn]);
-			if (result == players[0].GetStringUsedSkill()) {
+			if (choose + 1 == 2 && players[turn].GetSkillStatus())
 				answ = false;
-			}
+			string result = players[turn].MakeAMove(choose+1, players[1 - turn]);
 			system("cls");
 			cout << result;
 			_getche();
 		}
 	}
 }
-void Battle(Character& p1, Character& p2) {
+
+void Battle(shared_ptr<Character> p1, shared_ptr<Character> p2) {
 	int turn = 0;
-	Container players = { p1, p2 };
+	Container players;
+	players.AddElem(p1);
+	players.AddElem(p2);
+
+	/*Container players = {std::make_shared<Character>(p1), std::make_shared<Character>(p1) };*/
 	while (players[0].GetHP() != 0 && players[1].GetHP() != 0) {
 		MakeAMove(players, turn);
 		turn = 1 - turn;
@@ -198,7 +228,7 @@ void PlayGame(Container& arr) {
 				}
 				else {//если персонажи все же выбраны
 					system("cls");
-					Battle(arr[pers[0]], arr[pers[1]]);
+					Battle(arr(pers[0]), arr(pers[1]));
 				}
 			}
 			else if (choose != 3) {
@@ -230,7 +260,13 @@ int main() {
 	setlocale(LC_ALL, "RUS");
 	Container array;
 	int const size = 7;
-	Container fullarr = { assasin, berserk, knight };
+	Assasin ass;
+	Berserk ber;
+	Knight kni;
+	//Container fullarr(ass);
+	//fullarr.AddElem(ber);
+	//fullarr.AddElem(kni);
+	Container fullarr = {make_shared<Assasin>(ass), make_shared<Berserk>(ber), make_shared<Knight>(kni)};
 	string commands[size] = {
 		"Добавить персонажа в массив по индексу",
 		"Удалить персонажа из массива по индексу",
