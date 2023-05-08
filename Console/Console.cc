@@ -135,13 +135,13 @@ void ChangeCharacter(Container& arr) {
 		int choose = InputType();
 		switch (choose) {
 		case 0:
-			arr[index] = Berserk();
+			arr.ChangeElem(index, make_shared<Berserk>());
 			break;
 		case 1:
-			arr[index] = Assasin();
+			arr.ChangeElem(index, make_shared<Assasin>()) ;
 			break;
 		case 2:
-			arr[index] = Knight();
+			arr.ChangeElem(index, make_shared<Knight>());
 			break;
 
 		}
@@ -228,7 +228,7 @@ void PlayGame(Container& arr) {
 				}
 				else {//если персонажи все же выбраны
 					system("cls");
-					Battle(arr(pers[0]), arr(pers[1]));
+					Battle(arr[pers[0]].clone(), arr[pers[1]].clone());
 				}
 			}
 			else if (choose != 3) {
@@ -260,13 +260,15 @@ int main() {
 	setlocale(LC_ALL, "RUS");
 	Container array;
 	int const size = 7;
-	Assasin ass;
-	Berserk ber;
-	Knight kni;
+	vector<shared_ptr<Character>> arr;
+	arr.push_back(make_shared<Assasin>());
+	arr.push_back(make_shared<Berserk>());
+	arr.push_back(make_shared<Knight>());
+	Container fullarr(arr);
+
 	//Container fullarr(ass);
 	//fullarr.AddElem(ber);
 	//fullarr.AddElem(kni);
-	Container fullarr = {make_shared<Assasin>(ass), make_shared<Berserk>(ber), make_shared<Knight>(kni)};
 	string commands[size] = {
 		"Добавить персонажа в массив по индексу",
 		"Удалить персонажа из массива по индексу",

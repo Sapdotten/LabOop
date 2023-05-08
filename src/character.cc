@@ -26,7 +26,16 @@ bool CharacterGame::Character::GetSkillStatus() const {
 }
 
 std::string CharacterGame::Character::GetType() const {
-	return _type;
+	return "Character";
+}
+std::string CharacterGame::Assasin::GetType() const {
+	return "Assasin";
+}
+std::string CharacterGame::Berserk::GetType() const {
+	return "Berserk";
+}
+std::string CharacterGame::Knight::GetType() const {
+	return "Knight";
 }
 
 
@@ -166,23 +175,23 @@ std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent)
 
 
 
-std::string CharacterGame::Character::GetStringUsedSkill() {
+std::string CharacterGame::Character::GetStringUsedSkill() const{
 	return _skill_is_used;
 }
 
 
 void CharacterGame::Character::Print(std::ostream& out) const{
-	out <<"type: " << "No type" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+	out <<"type: " << this->GetType() << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
 }
-void CharacterGame::Assasin::Print(std::ostream& out) const {
-	out << "type: " << "Assasin" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
-}
-void CharacterGame::Berserk::Print(std::ostream& out) const {
-	out << "type: " << "Berserk" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
-}
-void CharacterGame::Knight::Print(std::ostream& out) const {
-	out << "type: " << "Knight" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
-}
+//void CharacterGame::Assasin::Print(std::ostream& out) const {
+//	out << "type: " << "Assasin" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+//}
+//void CharacterGame::Berserk::Print(std::ostream& out) const {
+//	out << "type: " << "Berserk" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+//}
+//void CharacterGame::Knight::Print(std::ostream& out) const {
+//	out << "type: " << "Knight" << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;
+//}
 
 
 std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::Character& pers){
@@ -194,4 +203,15 @@ std::unique_ptr<CharacterGame::Character> CharacterGame::Character::clone() cons
 	return std::make_unique<CharacterGame::Character>(*this);
 };
 
+std::unique_ptr<CharacterGame::Character> CharacterGame::Assasin::clone() const {
+	return std::make_unique<CharacterGame::Assasin>(*this);
+};
+
+std::unique_ptr<CharacterGame::Character> CharacterGame::Berserk::clone() const {
+	return std::make_unique<CharacterGame::Berserk>(*this);
+};
+
+std::unique_ptr<CharacterGame::Character> CharacterGame::Knight::clone() const {
+	return std::make_unique<CharacterGame::Knight>(*this);
+};
 //"type: " << this->GetType() << "  HP: " << this->_health << "  DMG: " << this->_damage << "  Armor: " << this->_armor;

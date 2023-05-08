@@ -122,33 +122,33 @@ TEST(BerserkTests, BerserkTest3) {//berserk without skill vs everybody(0) with s
 }
 
 TEST(BerserkTests, BerserkTest4) {//berserk without skill vs everybody(1) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Berserk2;
-    Knight.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Berserk Berserk2;
+    Knight1.SetChance(1);
+    Assasin1.SetChance(1);
     Berserk2.SetChance(1);
 
-    Knight.UseSkill();
-    Assasin.UseSkill();
+    Knight1.UseSkill();
+    Assasin1.UseSkill();
     Berserk2.UseSkill();
 
-    Berserk.SetChance(0);
+    Berserk1.SetChance(0);
 
-    int bk = Berserk.Attack(Knight);
-    int ba = Berserk.Attack(Assasin);
-    int bb = Berserk.Attack(Berserk2);
+    int bk = Berserk1.Attack(Knight1);
+    int ba = Berserk1.Attack(Assasin1);
+    int bb = Berserk1.Attack(Berserk2);
 
-    Berserk.SetChance(1);
+    Berserk1.SetChance(1);
 
-    int Bk = Berserk.Attack(Knight);
-    int Ba = Berserk.Attack(Assasin);
-    int Bb = Berserk.Attack(Berserk2);
+    int Bk = Berserk1.Attack(Knight1);
+    int Ba = Berserk1.Attack(Assasin1);
+    int Bb = Berserk1.Attack(Berserk2);
 
-    int HPK = Knight.GetHP();
+    int HPK = Knight1.GetHP();
     int HPB = Berserk2.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 830);
     EXPECT_EQ(HPB, 530);
@@ -163,35 +163,35 @@ TEST(BerserkTests, BerserkTest4) {//berserk without skill vs everybody(1) with s
 }
 
 TEST(BerserkTests, BerserkTest5) {//berserk with skill vs everybody(0) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Berserk2;
-    Knight.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Berserk Berserk2;
+    Knight1.SetChance(0);
+    Assasin1.SetChance(0);
     Berserk2.SetChance(0);
 
-    Berserk.SetChance(-1);
+    Berserk1.SetChance(-1);
 
-    Berserk.UseSkill();
-    int bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int bb = Berserk1.Attack(Berserk2);
 
-    Berserk.SetChance(1);
+    Berserk1.SetChance(1);
 
-    Berserk.UseSkill();
-    int Bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int Ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int Bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int Bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int Ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int Bb = Berserk1.Attack(Berserk2);
 
-    int HPK = Knight.GetHP();
+    int HPK = Knight1.GetHP();
     int HPB = Berserk2.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 540);
     EXPECT_EQ(HPB, 490);
@@ -206,35 +206,35 @@ TEST(BerserkTests, BerserkTest5) {//berserk with skill vs everybody(0) without s
 }
 
 TEST(BerserkTests, BerserkTest6) {//berserk with skill vs everybody(1) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Berserk2;
-    Knight.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Berserk Berserk2;
+    Knight1.SetChance(1);
+    Assasin1.SetChance(1);
     Berserk2.SetChance(1);
 
-    Berserk.SetChance(-1);
+    Berserk1.SetChance(-1);
 
-    Berserk.UseSkill();
-    int bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int bb = Berserk1.Attack(Berserk2);
 
-    Berserk.SetChance(1);
+    Berserk1.SetChance(1);
 
-    Berserk.UseSkill();
-    int Bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int Ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int Bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int Bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int Ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int Bb = Berserk1.Attack(Berserk2);
 
-    int HPK = Knight.GetHP();
+    int HPK = Knight1.GetHP();
     int HPB = Berserk2.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 770);
     EXPECT_EQ(HPB, 490);
@@ -249,39 +249,39 @@ TEST(BerserkTests, BerserkTest6) {//berserk with skill vs everybody(1) without s
 }
 
 TEST(BerserkTests, BerserkTest7) {//berserk with skill vs everybody(0) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Berserk2;
-    Knight.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Berserk Berserk2;
+    Knight1.SetChance(0);
+    Assasin1.SetChance(0);
     Berserk2.SetChance(0);
 
-    Knight.UseSkill();
-    Assasin.UseSkill();
+    Knight1.UseSkill();
+    Assasin1.UseSkill();
     Berserk2.UseSkill();
 
-    Berserk.SetChance(-1);
+    Berserk1.SetChance(-1);
 
-    Berserk.UseSkill();
-    int bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int bb = Berserk1.Attack(Berserk2);
 
-    Berserk.SetChance(1);
+    Berserk1.SetChance(1);
 
-    Berserk.UseSkill();
-    int Bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int Ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int Bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int Bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int Ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int Bb = Berserk1.Attack(Berserk2);
 
-    int HPK = Knight.GetHP();
+    int HPK = Knight1.GetHP();
     int HPB = Berserk2.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 580);
     EXPECT_EQ(HPB, 450);
@@ -296,39 +296,39 @@ TEST(BerserkTests, BerserkTest7) {//berserk with skill vs everybody(0) with skil
 }
 
 TEST(BerserkTests, BerserkTest8) {//berserk with skill vs everybody(1) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Berserk2;
-    Knight.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Berserk Berserk2;
+    Knight1.SetChance(1);
+    Assasin1.SetChance(1);
     Berserk2.SetChance(1);
 
-    Knight.UseSkill();
-    Assasin.UseSkill();
+    Knight1.UseSkill();
+    Assasin1.UseSkill();
     Berserk2.UseSkill();
 
-    Berserk.SetChance(-1);
+    Berserk1.SetChance(-1);
 
-    Berserk.UseSkill();
-    int bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int bb = Berserk1.Attack(Berserk2);
 
-    Berserk.SetChance(1);
+    Berserk1.SetChance(1);
 
-    Berserk.UseSkill();
-    int Bk = Berserk.Attack(Knight);
-    Berserk.UseSkill();
-    int Ba = Berserk.Attack(Assasin);
-    Berserk.UseSkill();
-    int Bb = Berserk.Attack(Berserk2);
+    Berserk1.UseSkill();
+    int Bk = Berserk1.Attack(Knight1);
+    Berserk1.UseSkill();
+    int Ba = Berserk1.Attack(Assasin1);
+    Berserk1.UseSkill();
+    int Bb = Berserk1.Attack(Berserk2);
 
-    int HPK = Knight.GetHP();
+    int HPK = Knight1.GetHP();
     int HPB = Berserk2.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 790);
     EXPECT_EQ(HPB, 450);
@@ -346,29 +346,29 @@ TEST(BerserkTests, BerserkTest8) {//berserk with skill vs everybody(1) with skil
 
 
 TEST(KnightTests, KnightTest1) {//knight without skill vs everybody(0) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(0);
+    Assasin1.SetChance(0);
     Knight2.SetChance(0);
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    int kb = Knight.Attack(Berserk);
-    int ka = Knight.Attack(Assasin);
-    int kk = Knight.Attack(Knight2);
+    int kb = Knight1.Attack(Berserk1);
+    int ka = Knight1.Attack(Assasin1);
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    int Kb = Knight.Attack(Berserk);
-    int Ka = Knight.Attack(Assasin);
-    int Kk = Knight.Attack(Knight2);
+    int Kb = Knight1.Attack(Berserk1);
+    int Ka = Knight1.Attack(Assasin1);
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 900);
     EXPECT_EQ(HPB, 850);
@@ -383,29 +383,29 @@ TEST(KnightTests, KnightTest1) {//knight without skill vs everybody(0) without s
 }
 
 TEST(KnightTests, KnightTest2) {//knight without skill vs everybody(1) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(1);
+    Assasin1.SetChance(1);
     Knight2.SetChance(1);
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    int kb = Knight.Attack(Berserk);
-    int ka = Knight.Attack(Assasin);
-    int kk = Knight.Attack(Knight2);
+    int kb = Knight1.Attack(Berserk1);
+    int ka = Knight1.Attack(Assasin1);
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    int Kb = Knight.Attack(Berserk);
-    int Ka = Knight.Attack(Assasin);
-    int Kk = Knight.Attack(Knight2);
+    int Kb = Knight1.Attack(Berserk1);
+    int Ka = Knight1.Attack(Assasin1);
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 950);
     EXPECT_EQ(HPB, 850);
@@ -420,35 +420,35 @@ TEST(KnightTests, KnightTest2) {//knight without skill vs everybody(1) without s
 }
 
 TEST(KnightTests, KnightTest3) {//knight with skill vs everybody(0) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(0);
+    Assasin1.SetChance(0);
     Knight2.SetChance(0);
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Knight.UseSkill();
-    int kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Knight.UseSkill();
-    int Kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int Ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int Kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int Kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int Ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 940);
     EXPECT_EQ(HPB, 890);
@@ -463,35 +463,35 @@ TEST(KnightTests, KnightTest3) {//knight with skill vs everybody(0) without skil
 }
 
 TEST(KnightTests, KnightTest4) {//knight with skill vs everybody(1) without skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(1);
+    Assasin1.SetChance(1);
     Knight2.SetChance(1);
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Knight.UseSkill();
-    int kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Knight.UseSkill();
-    int Kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int Ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int Kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int Kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int Ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 970);
     EXPECT_EQ(HPB, 890);
@@ -506,33 +506,33 @@ TEST(KnightTests, KnightTest4) {//knight with skill vs everybody(1) without skil
 }
 
 TEST(KnightTests, KnightTest5) {//knight without skill vs everybody(0) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(0);
+    Assasin1.SetChance(0);
     Knight2.SetChance(0);
 
-    Berserk.UseSkill();
-    Assasin.UseSkill();
+    Berserk1.UseSkill();
+    Assasin1.UseSkill();
     Knight2.UseSkill();
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    int kb = Knight.Attack(Berserk);
-    int ka = Knight.Attack(Assasin);
-    int kk = Knight.Attack(Knight2);
+    int kb = Knight1.Attack(Berserk1);
+    int ka = Knight1.Attack(Assasin1);
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    int Kb = Knight.Attack(Berserk);
-    int Ka = Knight.Attack(Assasin);
-    int Kk = Knight.Attack(Knight2);
+    int Kb = Knight1.Attack(Berserk1);
+    int Ka = Knight1.Attack(Assasin1);
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 940);
     EXPECT_EQ(HPB, 810);
@@ -547,33 +547,33 @@ TEST(KnightTests, KnightTest5) {//knight without skill vs everybody(0) with skil
 }
 
 TEST(KnightTests, KnightTest6) {//knight without skill vs everybody(1) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(1);
+    Assasin1.SetChance(1);
     Knight2.SetChance(1);
 
-    Berserk.UseSkill();
-    Assasin.UseSkill();
+    Berserk1.UseSkill();
+    Assasin1.UseSkill();
     Knight2.UseSkill();
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    int kb = Knight.Attack(Berserk);
-    int ka = Knight.Attack(Assasin);
-    int kk = Knight.Attack(Knight2);
+    int kb = Knight1.Attack(Berserk1);
+    int ka = Knight1.Attack(Assasin1);
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    int Kb = Knight.Attack(Berserk);
-    int Ka = Knight.Attack(Assasin);
-    int Kk = Knight.Attack(Knight2);
+    int Kb = Knight1.Attack(Berserk1);
+    int Ka = Knight1.Attack(Assasin1);
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 970);
     EXPECT_EQ(HPB, 810);
@@ -588,39 +588,39 @@ TEST(KnightTests, KnightTest6) {//knight without skill vs everybody(1) with skil
 }
 
 TEST(KnightTests, KnightTest7) {//knight with skill vs everybody(0) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(0);
-    Assasin.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(0);
+    Assasin1.SetChance(0);
     Knight2.SetChance(0);
 
-    Berserk.UseSkill();
-    Assasin.UseSkill();
+    Berserk1.UseSkill();
+    Assasin1.UseSkill();
     Knight2.UseSkill();
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Knight.UseSkill();
-    int kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Knight.UseSkill();
-    int Kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int Ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int Kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int Kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int Ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 980);
     EXPECT_EQ(HPB, 850);
@@ -635,39 +635,39 @@ TEST(KnightTests, KnightTest7) {//knight with skill vs everybody(0) with skill
 }
 
 TEST(KnightTests, KnightTest8) {//knight with skill vs everybody(1) with skill
-    Character Berserk;
-    Character Knight;
-    Character Assasin;
-    Character Knight2;
-    Berserk.SetChance(1);
-    Assasin.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Knight Knight2;
+    Berserk1.SetChance(1);
+    Assasin1.SetChance(1);
     Knight2.SetChance(1);
 
-    Berserk.UseSkill();
-    Assasin.UseSkill();
+    Berserk1.UseSkill();
+    Assasin1.UseSkill();
     Knight2.UseSkill();
 
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Knight.UseSkill();
-    int kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int kk = Knight1.Attack(Knight2);
 
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Knight.UseSkill();
-    int Kb = Knight.Attack(Berserk);
-    Knight.UseSkill();
-    int Ka = Knight.Attack(Assasin);
-    Knight.UseSkill();
-    int Kk = Knight.Attack(Knight2);
+    Knight1.UseSkill();
+    int Kb = Knight1.Attack(Berserk1);
+    Knight1.UseSkill();
+    int Ka = Knight1.Attack(Assasin1);
+    Knight1.UseSkill();
+    int Kk = Knight1.Attack(Knight2);
 
     int HPK = Knight2.GetHP();
-    int HPB = Berserk.GetHP();
-    int HPA = Assasin.GetHP();
+    int HPB = Berserk1.GetHP();
+    int HPA = Assasin1.GetHP();
 
     EXPECT_EQ(HPK, 990);
     EXPECT_EQ(HPB, 850);
@@ -685,28 +685,28 @@ TEST(KnightTests, KnightTest8) {//knight with skill vs everybody(1) with skill
 
 
 TEST(AssasinTests, AssasinTest1) {//assasin without skill vs everybody(0) without skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(0);
     Assasin2.SetChance(0);
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Assasin.SetChance(0);
+    Assasin1.SetChance(0);
 
-    int ab = Assasin.Attack(Berserk);
-    int aa = Assasin.Attack(Assasin2);
-    int ak = Assasin.Attack(Knight);
+    int ab = Assasin1.Attack(Berserk1);
+    int aa = Assasin1.Attack(Assasin2);
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    int Ab = Assasin.Attack(Berserk);
-    int Aa = Assasin.Attack(Assasin2);
-    int Ak = Assasin.Attack(Knight);
+    int Ab = Assasin1.Attack(Berserk1);
+    int Aa = Assasin1.Attack(Assasin2);
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 850);
@@ -722,28 +722,28 @@ TEST(AssasinTests, AssasinTest1) {//assasin without skill vs everybody(0) withou
 }
 
 TEST(AssasinTests, AssasinTest2) {//assasin without skill vs everybody(1) without skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(1);
     Assasin2.SetChance(1);
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Assasin.SetChance(0);
+    Assasin1.SetChance(0);
 
-    int ab = Assasin.Attack(Berserk);
-    int aa = Assasin.Attack(Assasin2);
-    int ak = Assasin.Attack(Knight);
+    int ab = Assasin1.Attack(Berserk1);
+    int aa = Assasin1.Attack(Assasin2);
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    int Ab = Assasin.Attack(Berserk);
-    int Aa = Assasin.Attack(Assasin2);
-    int Ak = Assasin.Attack(Knight);
+    int Ab = Assasin1.Attack(Berserk1);
+    int Aa = Assasin1.Attack(Assasin2);
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 925);
@@ -759,33 +759,33 @@ TEST(AssasinTests, AssasinTest2) {//assasin without skill vs everybody(1) withou
 }
 
 TEST(AssasinTests, AssasinTest3) {//assasin with skill vs everybody(0) without skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(0);
     Assasin2.SetChance(0);
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Assasin.SetChance(0);
-    Assasin.UseSkill();
-    int ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int ak = Assasin.Attack(Knight);
+    Assasin1.SetChance(0);
+    Assasin1.UseSkill();
+    int ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    Assasin.UseSkill();
-    int Ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int Aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int Ak = Assasin.Attack(Knight);
+    Assasin1.UseSkill();
+    int Ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int Aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 850);
@@ -801,33 +801,33 @@ TEST(AssasinTests, AssasinTest3) {//assasin with skill vs everybody(0) without s
 }
 
 TEST(AssasinTests, AssasinTest4) {//assasin with skill vs everybody(0) without skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(1);
     Assasin2.SetChance(1);
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Assasin.SetChance(0);
-    Assasin.UseSkill();
-    int ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int ak = Assasin.Attack(Knight);
+    Assasin1.SetChance(0);
+    Assasin1.UseSkill();
+    int ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    Assasin.UseSkill();
-    int Ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int Aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int Ak = Assasin.Attack(Knight);
+    Assasin1.UseSkill();
+    int Ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int Aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 925);
@@ -843,32 +843,32 @@ TEST(AssasinTests, AssasinTest4) {//assasin with skill vs everybody(0) without s
 }
 
 TEST(AssasinTests, AssasinTest5) {//assasin without skill vs everybody(0) with skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(0);
     Assasin2.SetChance(0);
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Berserk.UseSkill();
+    Berserk1.UseSkill();
     Assasin2.UseSkill();
-    Knight.UseSkill();
+    Knight1.UseSkill();
 
-    Assasin.SetChance(0);
+    Assasin1.SetChance(0);
 
-    int ab = Assasin.Attack(Berserk);
-    int aa = Assasin.Attack(Assasin2);
-    int ak = Assasin.Attack(Knight);
+    int ab = Assasin1.Attack(Berserk1);
+    int aa = Assasin1.Attack(Assasin2);
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    int Ab = Assasin.Attack(Berserk);
-    int Aa = Assasin.Attack(Assasin2);
-    int Ak = Assasin.Attack(Knight);
+    int Ab = Assasin1.Attack(Berserk1);
+    int Aa = Assasin1.Attack(Assasin2);
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 910);
@@ -884,32 +884,32 @@ TEST(AssasinTests, AssasinTest5) {//assasin without skill vs everybody(0) with s
 }
 
 TEST(AssasinTests, AssasinTest6) {//assasin without skill vs everybody(1) with skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(1);
     Assasin2.SetChance(1);
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Berserk.UseSkill();
+    Berserk1.UseSkill();
     Assasin2.UseSkill();
-    Knight.UseSkill();
+    Knight1.UseSkill();
 
-    Assasin.SetChance(0);
+    Assasin1.SetChance(0);
 
-    int ab = Assasin.Attack(Berserk);
-    int aa = Assasin.Attack(Assasin2);
-    int ak = Assasin.Attack(Knight);
+    int ab = Assasin1.Attack(Berserk1);
+    int aa = Assasin1.Attack(Assasin2);
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    int Ab = Assasin.Attack(Berserk);
-    int Aa = Assasin.Attack(Assasin2);
-    int Ak = Assasin.Attack(Knight);
+    int Ab = Assasin1.Attack(Berserk1);
+    int Aa = Assasin1.Attack(Assasin2);
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 955);
@@ -925,37 +925,37 @@ TEST(AssasinTests, AssasinTest6) {//assasin without skill vs everybody(1) with s
 }
 
 TEST(AssasinTests, AssasinTest7) {//assasin with skill vs everybody(0) with skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(0);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(0);
     Assasin2.SetChance(0);
-    Knight.SetChance(0);
+    Knight1.SetChance(0);
 
-    Berserk.UseSkill();
+    Berserk1.UseSkill();
     Assasin2.UseSkill();
-    Knight.UseSkill();
+    Knight1.UseSkill();
 
-    Assasin.SetChance(0);
-    Assasin.UseSkill();
-    int ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int ak = Assasin.Attack(Knight);
+    Assasin1.SetChance(0);
+    Assasin1.UseSkill();
+    int ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    Assasin.UseSkill();
-    int Ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int Aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int Ak = Assasin.Attack(Knight);
+    Assasin1.UseSkill();
+    int Ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int Aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 910);
@@ -971,37 +971,37 @@ TEST(AssasinTests, AssasinTest7) {//assasin with skill vs everybody(0) with skil
 }
 
 TEST(AssasinTests, AssasinTest8) {//assasin with skill vs everybody(1) with skill
-    Character Assasin;
-    Character Berserk;
-    Character Knight;
-    Character Assasin2;
-    Berserk.SetChance(1);
+    Berserk Berserk1;
+    Knight Knight1;
+    Assasin Assasin1;
+    Assasin Assasin2;
+    Berserk1.SetChance(1);
     Assasin2.SetChance(1);
-    Knight.SetChance(1);
+    Knight1.SetChance(1);
 
-    Berserk.UseSkill();
+    Berserk1.UseSkill();
     Assasin2.UseSkill();
-    Knight.UseSkill();
+    Knight1.UseSkill();
 
-    Assasin.SetChance(0);
-    Assasin.UseSkill();
-    int ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int ak = Assasin.Attack(Knight);
+    Assasin1.SetChance(0);
+    Assasin1.UseSkill();
+    int ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int ak = Assasin1.Attack(Knight1);
 
-    Assasin.SetChance(1);
+    Assasin1.SetChance(1);
 
-    Assasin.UseSkill();
-    int Ab = Assasin.Attack(Berserk);
-    Assasin.UseSkill();
-    int Aa = Assasin.Attack(Assasin2);
-    Assasin.UseSkill();
-    int Ak = Assasin.Attack(Knight);
+    Assasin1.UseSkill();
+    int Ab = Assasin1.Attack(Berserk1);
+    Assasin1.UseSkill();
+    int Aa = Assasin1.Attack(Assasin2);
+    Assasin1.UseSkill();
+    int Ak = Assasin1.Attack(Knight1);
 
-    int HPK = Knight.GetHP();
-    int HPB = Berserk.GetHP();
+    int HPK = Knight1.GetHP();
+    int HPB = Berserk1.GetHP();
     int HPA = Assasin2.GetHP();
 
     EXPECT_EQ(HPK, 955);
@@ -1020,23 +1020,34 @@ TEST(AssasinTests, AssasinTest8) {//assasin with skill vs everybody(1) with skil
 
 
 TEST(ContainerTests, ContainerTest1) {
-
-    Container Array = {make_shared<Assasin>(), make_shared<Berserk>(), make_shared<Knight>()};
-    int minDamage = Array.GetMinDamage().GetDamage();
+    vector<shared_ptr<Character>> arr;
+    arr.push_back(make_shared<Assasin>());
+    arr.push_back(make_shared<Berserk>());
+    arr.push_back(make_shared<Knight>());
+    Container Array(arr);
+    int minDamage = Array.GetMinDamage();
 
     EXPECT_EQ(minDamage, 0);
 }
 TEST(ContainerTests, ContainerTest2) {
-    Container Array = { make_shared<Assasin>(), make_shared<Berserk>(), make_shared<Knight>(), make_shared<Assasin>(), make_shared<Knight>()};
+    vector<shared_ptr<Character>> arr;
+    arr.push_back(make_shared<Assasin>());
+    arr.push_back(make_shared<Berserk>());
+    arr.push_back(make_shared<Knight>());
+    arr.push_back(make_shared<Knight>());
+    Container Array(arr);
     Array.DeleteElem(3);
 
-    EXPECT_EQ(Array[3].GetType(), "Knight");
-    EXPECT_EQ(Array.GetSize(), 4);
+    EXPECT_EQ(Array[2].GetType(), "Knight");
+    EXPECT_EQ(Array.GetSize(), 3);
 }
 TEST(ContainerTests, ContainerTest3) {
-    Container Array = { make_shared<Assasin>(), make_shared<Berserk>()};
+    vector<shared_ptr<Character>> arr;
+    arr.push_back(make_shared<Assasin>());
+    arr.push_back(make_shared<Berserk>());
+    Container Array(arr);
     EXPECT_EQ(Array.GetSize(), 2);
-    EXPECT_EQ(Array.GetMinDamage().GetDamage(), 100);
+    EXPECT_EQ(Array[Array.GetMinDamage()].GetDamage(), 100);
 }
 
 

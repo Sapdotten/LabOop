@@ -7,8 +7,8 @@
 #include <cstdarg>
 
 CharacterGame::Container::Container(const Container& arr) {
-	_size = arr._size;
-	_array = std::vector(arr._array);
+	_array.reserve(arr.GetSize());
+	for (const auto ptr : arr._array) _array.push_back(ptr->clone());
 }
 //CharacterGame::Container::Container(int size, ...) {
 //	va_list ap;
@@ -18,9 +18,8 @@ CharacterGame::Container::Container(const Container& arr) {
 //	}
 //}
 
-CharacterGame::Container::Container(Character& pers){
-	_size = 1;
-	_array.push_back(std::make_shared<Character>(pers));
+CharacterGame::Container::Container(std::vector<std::shared_ptr<Character>> arr){
+	for (auto elem : arr) _array.push_back(elem->clone());
 };
 
 //CharacterGame::Container::Container(int size){
@@ -46,47 +45,44 @@ CharacterGame::Container::Container(Character& pers){
 
 
 CharacterGame::Character CharacterGame::Container::operator[](const int index) const{
-	if (index >= _size)
+	if (index >= _array.size())
 		throw std::out_of_range("");
 	return *_array[index];
 }
 
 CharacterGame::Character& CharacterGame::Container::operator[](const int index) {
-	if (index >= _size || index<0)
+	if (index >= _array.size() || index<0)
 		throw std::out_of_range("");
 	return *_array[index];
 }
 
 int CharacterGame::Container::GetSize() const{
-	return _size;
+	return _array.size();
 }
 
-void CharacterGame::Container::AddElem(std::shared_ptr<Character>& elem) {
-	_array.insert(_array.begin()+_size,  elem);
-	_size++;
+void CharacterGame::Container::AddElem(std::shared_ptr<Character> elem) {
+	_array.insert(_array.begin()+_array.size(), elem->clone());
 }
 
-void CharacterGame::Container::AddElem(std::shared_ptr<Character>&& elem, int index) {
-	if (index > _size || index<0)
+void CharacterGame::Container::AddElem(std::shared_ptr<Character> elem, int index) {
+	if (index > _array.size() || index<0)
 		throw std::out_of_range("Invalid index");
 
-	_array.insert(_array.begin() + index, elem);
-	_size++;
+	_array.insert((_array.begin() + index), elem->clone());
 }
 
 void CharacterGame::Container::DeleteElem(int index) {
-	if (index >= _size || index < 0)
+	if (index >= _array.size() || index < 0)
 		throw std::out_of_range("Invalid index");
 
 	_array.erase(_array.begin() + index);
-	--_size;
 }
 
 int CharacterGame::Container::GetMaxDamage() {
-	if (_size == 0)
+	if (_array.size() == 0)
 		throw std::invalid_argument("");
 	int maxElem = 0;
-	for (int i = 0; i < _size; ++i) {
+	for (int i = 0; i < _array.size(); ++i) {
 		if ((*this)[i].GetDamage() > (*this)[maxElem].GetDamage()) {
 			maxElem = i;
 		}
@@ -94,26 +90,25 @@ int CharacterGame::Container::GetMaxDamage() {
 	return maxElem;
 }
 
-CharacterGame::Character& CharacterGame::Container::GetMinDamage() {
-	if (_size == 0)
+int CharacterGame::Container::GetMinDamage() {
+	if (_array.size() == 0)
 		throw std::invalid_argument("");
 	int minElem = 0;
-	for (int i = 0; i < _size; ++i) {
+	for (int i = 0; i < _array.size(); ++i) {
 		if ((*this)[i].GetDamage() < (*this)[minElem].GetDamage()) {
 			minElem = i;
 		}
 	}
-	return (*this)[minElem];
+	return minElem;
 }
 
+void CharacterGame::Container::ChangeElem(const int index, std::shared_ptr<CharacterGame::Character> elem) {
+	_array[index] = elem->clone();
+};
 
-void CharacterGame::Container::swap(Container& arr) {
-	std::swap(_size, arr._size);
-	std::swap(_array, arr._array);
-}
 
 CharacterGame::Container& CharacterGame::Container::operator=(Container arr) {
-	this->swap(arr);
+	std::swap(_array, arr._array);
 	return *this;
 }
 

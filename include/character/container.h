@@ -8,12 +8,10 @@
 namespace CharacterGame {
 	class Container {
 		std::vector<std::shared_ptr<CharacterGame::Character>> _array;
-		int _size;
 	public:
 		Container(const Container& arr);
-		Container() : _size(0) {};
-		Container(Character& pers);
-		Container(std::initializer_list<std::shared_ptr<Character>>&& args) : _array(std::move(args)), _size(args.size()) {};
+		Container() :_array(0) {};
+		Container(std::vector<std::shared_ptr<Character>> arr);
 
 
 		Character& operator[](const int index);
@@ -22,11 +20,12 @@ namespace CharacterGame {
 
 
 		int GetSize() const;
-		void AddElem(std::shared_ptr<Character>& elem);
-		void AddElem(std::shared_ptr<Character>&& elem, int index);
+		void AddElem(std::shared_ptr<Character> elem);
+		void AddElem(std::shared_ptr<Character> elem, int index);
+		void ChangeElem(const int index, std::shared_ptr<Character> elem);
 		void DeleteElem(int index);
 		int GetMaxDamage();
-		Character& GetMinDamage();
+		int GetMinDamage();
 		void swap(Container& arr);
 		Container& operator=(Container arr);
 	};
