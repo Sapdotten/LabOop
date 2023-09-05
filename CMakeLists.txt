@@ -21,14 +21,15 @@ endif()
 add_library(character SHARED "include/character/character.h" "src/character.cc" "include/character/container.h" "src/container.cc")
 target_include_directories(character PUBLIC "include")
 
+
 # Подключаем googletest
 include(FetchContent)
-FetchContent_Declare(googletest URL C:/Users/regis/oop-repository/gtest.zip)
+FetchContent_Declare(googletest URL "C:/Users/regis/oop-repository/01-project-structure/gtest.zip")
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Объявляем тесты
-add_executable(Console "Console/Console.cc" "include/character/container.h")
+add_executable(Console "Console/Console.cc")
 add_executable(character_tests "tests/character_tests.cc" "include/character/container.h")
 target_link_libraries(Console character GTest::gtest_main)
 target_link_libraries(character_tests character GTest::gtest_main)

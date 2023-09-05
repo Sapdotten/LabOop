@@ -1,11 +1,16 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <iostream>
+#include <istream>
+
 
 
 namespace CharacterGame {
+	
 
 	class Character {
+		friend std::ostream& operator<<(std::ostream& out, const Character& pers);
 	protected:
 		std::string _type;
 		int _health;
@@ -21,7 +26,6 @@ namespace CharacterGame {
 		Character(int health, int armor, int damage) :_type("No type"), _health(health), _armor(armor), _damage(damage), _chance(0.5), _skillStatus(false) {};
 	
 	public:
-		friend std::ostream& operator<<(std::ostream& out, const Character& pers);
 		void Print(std::ostream& out) const;
 
 		Character() : _health(0), _armor(0), _damage(0), _chance(0.5), _skillStatus(false) {};
@@ -55,6 +59,8 @@ namespace CharacterGame {
 		
 
 	};
+	std::ostream& operator<<(std::ostream& out, const Character& pers);
+	
 	
 	class Knight : public Character {
 	public:
@@ -86,7 +92,10 @@ namespace CharacterGame {
 		std::unique_ptr<Character> clone() const override;
 		std::string GetType() const override;
 	};
+
+
 	
 }
+
 
 

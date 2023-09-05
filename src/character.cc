@@ -1,9 +1,11 @@
+#pragma once
 #include <character/character.h>
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <string>
+#include <istream>
 
 
 
@@ -175,9 +177,9 @@ std::string CharacterGame::Character::MakeAMove(int choose, Character& opponent)
 
 
 
-std::string CharacterGame::Character::GetStringUsedSkill() const{
-	return _skill_is_used;
-}
+//std::string CharacterGame::Character::GetStringUsedSkill() const{
+//	return _skill_is_used;
+//}
 
 
 void CharacterGame::Character::Print(std::ostream& out) const{
@@ -198,6 +200,8 @@ std::ostream& CharacterGame::operator<<(std::ostream& out, const CharacterGame::
 	pers.Print(out);
 	return out;
 }
+
+
 
 std::unique_ptr<CharacterGame::Character> CharacterGame::Character::clone() const {
 	return std::make_unique<CharacterGame::Character>(*this);
